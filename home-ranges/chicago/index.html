@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Our Chicago · Home-range map · Pensador Solutions</title>
+<meta name="description" content="A vintage 3D map of the part of a city we lived in, drawn from our own check-ins with a wildlife home-range method.">
+<link rel="stylesheet" href="../_lib/homerange.css">
+<script type="importmap">{"imports":{"three":"../_lib/three/three.module.js","three/addons/":"../_lib/three/addons/"}}</script>
+</head>
+<body>
+<div id="loading">Raising the ground…</div>
+<div id="scene"></div>
+<header class="top"><div class="kick">Home-range maps · Pensador Solutions</div><h1></h1><div class="sub"></div></header>
+<aside id="legend" class="panel"><h2>Key</h2><div class="body"></div></aside>
+<aside id="card" class="panel" aria-live="polite"></aside>
+<div id="compass"></div>
+<div id="scale"></div>
+<div id="about" class="panel" role="dialog" aria-label="About this map"><h2>About this map</h2><div class="body"></div><button class="x">Close</button></div>
+<script src="data.js"></script>
+<script type="module" src="../_lib/homerange.js"></script>
+</body>
+</html>

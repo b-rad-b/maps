@@ -38,7 +38,7 @@ const camera = new THREE.PerspectiveCamera(35, innerWidth / innerHeight, 10, spa
 const controls = new OrbitControls(camera, renderer.domElement);
 controls.enableDamping = true; controls.maxPolarAngle = 1.25; controls.minDistance = span * 0.12; controls.maxDistance = span * 2.6;
 controls.target.set(0, BASE, 0);
-const fit = Math.max(1, 1.25 / camera.aspect);
+const fit = Math.max(1, 1.25 / camera.aspect, 1.3 * Hm / span);
 camera.position.set(0, span * 0.95 * fit, span * 1.05 * fit);
 scene.add(new THREE.HemisphereLight(0xfff8e8, 0x8a7a60, 1.6));
 const sun = new THREE.DirectionalLight(0xffffff, 1.5); sun.position.set(-span, span * 1.4, -span * 0.6); scene.add(sun);
@@ -107,10 +107,13 @@ C.areas.forEach((a) => label('area', esc(a.n), a.xy[0], a.xy[1], 120));
 C.roads.forEach((r) => label('road', esc(r.n), r.xy[0], r.xy[1], 25));
 C.water.forEach((w) => label('water', esc(w.n), w.xy[0], w.xy[1], 25));
 
+const TIERS = C.tiers || [{ label: 'Regular stop', legend: 'Regular stop (5+ visits)' }, { label: 'Now and then', legend: 'Now and then (2–4)' }, { label: 'Once or twice', legend: 'Once or twice' }];
+const tierOf = (p) => Math.max(0, TIERS.findIndex((t) => t.label === p.tier));
+const SMALL = TIERS.length > 2 ? TIERS.length - 1 : 99;
 const pins = C.places.map((p) => {
   const cat = C.categories[p.cat];
   const el = document.createElement('div');
-  el.className = 'pin ' + (p.tier === 'Regular stop' ? 'big show' : p.tier === 'Once or twice' ? 'small' : '');
+  el.className = 'pin ' + (tierOf(p) === 0 ? 'big show' : tierOf(p) === SMALL ? 'small' : '');
   el.innerHTML = `<span class="dot" style="background:${cat.color}"></span><span class="nm">${esc(p.n)}</span>`;
   el.setAttribute('role', 'button'); el.setAttribute('tabindex', '0'); el.setAttribute('aria-label', p.n);
   el.addEventListener('click', (e) => { e.stopPropagation(); select(p); });
@@ -120,13 +123,15 @@ const pins = C.places.map((p) => {
 });
 
 // ---------- header + about
-document.title = `${C.title} · Home-range maps · Pensador Solutions`;
+const KICK = C.kick || 'Home-range maps';
+document.title = `${C.title} · ${KICK} · Pensador Solutions`;
+$('header .kick').textContent = `${KICK} · Pensador Solutions`;
 $('header h1').textContent = C.title;
-$('header .sub').textContent = `${C.subtitle} · the places we frequented, ${C.years}`;
+$('header .sub').textContent = C.tagline || `${C.subtitle} · the places we frequented, ${C.years}`;
 $('#about .body').innerHTML = `
-  <p>This block is our <b>home range</b> in ${esc(C.subtitle.split(',')[0])}: the area that holds 95% of our Foursquare Swarm check-ins from ${esc(C.years)},
+  ${C.about ? '<p>' + C.about + '</p><!--' : ''}<p>This block is our <b>home range</b> in ${esc(C.subtitle.split(',')[0])}: the area that holds 95% of our ${C.kdeStrava ? 'Foursquare Swarm check-ins and Strava walks' : 'Foursquare Swarm check-ins'} from ${esc(C.years)},
   found with the same kernel density method wildlife biologists use for collared animals (fixed Gaussian kernel, ${esc(C.method.h)} m bandwidth).
-  The pins are the public places inside it, sized by how often we went.${C.worn ? ' The faint rust lines are our Strava runs and walks, drawn together so the routes we repeated wear in darker; both ends of every track are trimmed.' : ''} Exact dates, visit counts and anywhere private are left out.</p>
+  The pins are the public places inside it, sized by how often we went.${C.worn ? ' The faint rust lines are our Strava runs and walks, drawn together so the routes we repeated wear in darker; both ends of every track are trimmed.' : ''} Exact dates, visit counts and anywhere private are left out.</p>${C.about ? '-->' : ''}
   <p><b>Sources:</b> ${C.sources.map(esc).join('; ')}.</p>
   <p><b>Projection:</b> ${esc(C.utm)}, local metres. <b>Heights</b> raised ${D.ex}× so gentle hills read. The scale bar is true at the centre of the view.</p>
   <p><b>Map:</b> Pensador Solutions, ${esc(C.built)}. Built with three.js.</p>`;
@@ -136,16 +141,15 @@ const cats = Object.entries(C.categories).filter(([k]) => C.places.some((p) => p
 $('#legend .body').innerHTML =
   cats.map(([k, c]) => `<div class="row"><span class="dot" style="background:${c.color}"></span>${esc(c.label)}</div>`).join('') +
   `<div class="sep"></div>
-   <div class="row"><span class="dot" style="background:#777;width:15px;height:15px"></span>Regular stop (5+ visits)</div>
-   <div class="row"><span class="dot" style="background:#777"></span>Now and then (2–4)</div>
-   <div class="row"><span class="dot" style="background:#777;width:9px;height:9px"></span>Once or twice</div>
+   ${TIERS.map((t, i) => `<div class="row"><span class="dot" style="background:#777${i === 0 ? ';width:15px;height:15px' : i === SMALL ? ';width:9px;height:9px' : ''}"></span>${esc(t.legend || t.label)}</div>`).join('')}
    <div class="sep"></div>
    <div class="row"><span class="sw" style="background:#b8c49a"></span>Parks and green space</div>
-   <div class="row"><span class="sw" style="background:#9db8c8"></span>Rivers and ponds</div>
+   <div class="row"><span class="sw" style="background:#9db8c8"></span>${esc(C.waterLabel || 'Rivers and ponds')}</div>
    <div class="row"><span class="sw" style="background:#cfc2a6"></span>Buildings</div>
    <div class="row"><span class="sw" style="background:repeating-linear-gradient(90deg,#5d5548 0 6px,#f4efe2 6px 12px)"></span>Railway</div>
    ${C.worn ? '<div class="row"><span class="sw" style="background:linear-gradient(90deg,transparent 0 3px,#a4573a 3px 7px,transparent 7px 9px,#7a2e0e 9px 13px,transparent 13px)"></span>Our running and walking routes</div>' : ''}
-   <div class="row"><span class="sw" style="background:#a08560"></span>Edge of our home range</div>
+   ${(C.extraLegend || []).map((x) => `<div class="row"><span class="sw" style="background:${x.css}"></span>${esc(x.label)}</div>`).join('')}
+   <div class="row"><span class="sw" style="background:#a08560"></span>${esc(C.edgeLabel || 'Edge of our home range')}</div>
    <div class="sep"></div><button id="aboutBtn">About this map</button>`;
 if (innerWidth <= 700) $('#legend').classList.add('min');
 $('#legend h2').addEventListener('click', () => $('#legend').classList.toggle('min'));
@@ -165,11 +169,12 @@ function select(p) {
       <button class="close" aria-label="Close">Back to the map ×</button></div>
     <h2>${esc(cat.label)}</h2>
     <h3>${esc(p.n)}</h3>
-    <div class="meta">${esc(p.area ? p.area + ' ward' : '')}${p.addr ? ' · ' + esc(p.addr.toLowerCase().replace(/\b\w/g, (c) => c.toUpperCase())) : ''}</div>
+    <div class="meta">${esc(p.area ? p.area + (C.areaSuffix ?? ' ward') : '')}${p.addr ? ' · ' + esc(p.addr.toLowerCase().replace(/\b\w/g, (c) => c.toUpperCase())) : ''}</div>
     ${p.d ? `<p>${esc(p.d)}</p>` : ''}
     <div class="tags"><span class="tag">${esc(p.tier)}</span></div>
+    ${p.url ? `<a class="go" href="${esc(p.url)}" target="_blank" rel="noopener">${esc(p.urlLabel || 'More information')} <span>↗</span></a>` : ''}
     <a class="go" href="${gm}" target="_blank" rel="noopener">Open in Google Maps <span>↗</span></a>
-    <div class="listing">${p.listed ? 'Still listed in Overture Maps places (November 2026).' : 'Not in current Overture Maps listings. It may have closed or changed its name.'}</div>`;
+    <div class="listing">${C.mode === 'public' ? esc(p.src || '') : p.listed ? 'Still listed in Overture Maps places (November 2026).' : 'Not in current Overture Maps listings. It may have closed or changed its name.'}</div>`;
   $('#card').classList.add('open'); document.body.classList.add('carding');
   $('#card .close').onclick = () => { $('#card').classList.remove('open'); document.body.classList.remove('carding'); pins.forEach((x) => x.el.classList.remove('sel')); history.replaceState(null, '', location.pathname); };
   $('#card').querySelectorAll('[data-d]').forEach((b) => b.onclick = () => select(order[(k + +b.dataset.d + order.length) % order.length]));
@@ -187,7 +192,7 @@ comp.innerHTML = `<svg viewBox="-50 -50 100 100" aria-label="North arrow"><g id=
   <path d="M0 -40 L7 0 L0 6 L-7 0Z" fill="#2f2a22"/><path d="M0 40 L7 0 L0 -6 L-7 0Z" fill="#f3eee0" stroke="#2f2a22"/>
   <text y="-42" text-anchor="middle" font-size="15" font-family="FellSC,serif" fill="#2f2a22">N</text></g></svg>`;
 const rose = comp.querySelector('#rose');
-const nice = [50, 100, 200, 250, 500, 1000, 2000];
+const nice = [50, 100, 200, 250, 500, 1000, 2000, 5000];
 function updateHud() {
   rose.setAttribute('transform', `rotate(${THREE.MathUtils.radToDeg(controls.getAzimuthalAngle())})`);
   const d = camera.position.distanceTo(controls.target);
@@ -199,15 +204,20 @@ function updateHud() {
 // ---------- decluttering: names for regular stops, all names when zoomed in
 function declutter() {
   const close = camera.position.distanceTo(controls.target) < span * 0.45;
-  pins.forEach(({ p, el }) => el.classList.toggle('show', close || p.tier === 'Regular stop'));
+  pins.forEach(({ p, el }) => el.classList.toggle('show', close || tierOf(p) === 0));
   const taken = [...document.querySelectorAll('.lbl.area')].map((e) => e.getBoundingClientRect());
-  const rank = { 'Regular stop': 0, 'Now and then': 1, 'Once or twice': 2 };
-  pins.slice().sort((a, b) => (b.p === cur) - (a.p === cur) || rank[a.p.tier] - rank[b.p.tier]).forEach(({ p, el }) => {
+  pins.slice().sort((a, b) => (b.p === cur) - (a.p === cur) || tierOf(a.p) - tierOf(b.p)).forEach(({ p, el }) => {
     if (!el.classList.contains('show') && p !== cur) return;
     const nm = el.querySelector('.nm'); nm.style.visibility = 'hidden'; nm.style.display = 'block';
     const r = nm.getBoundingClientRect(); nm.style.display = ''; nm.style.visibility = '';
     const hit = taken.some((t) => r.left < t.right && r.right > t.left && r.top < t.bottom && r.bottom > t.top);
     if (hit && p !== cur) el.classList.remove('show'); else taken.push(r);
+  });
+  document.querySelectorAll('.lbl.road, .lbl.water').forEach((e) => {
+    e.style.visibility = '';
+    const r = e.getBoundingClientRect();
+    const hit = taken.some((t) => r.left < t.right && r.right > t.left && r.top < t.bottom && r.bottom > t.top);
+    e.style.visibility = hit ? 'hidden' : ''; if (!hit) taken.push(r);
   });
 }
 

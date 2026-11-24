@@ -7,6 +7,8 @@ One real question per web GIS platform. Live at https://b-rad-b.github.io/maps/
 | `azt-border-to-vail/` | MapLibre GL JS | Live |
 | `azt-border-to-patagonia/` | MapLibre GL JS | Live |
 | `home-ranges/ealing/` | three.js | Live |
+| `home-ranges/` | three.js + Python pipeline (home-range atlas, 49 places) | Live |
+| `home-ranges/rita-ranch/` | three.js (public-data neighborhood map) | Live |
 | Drive-thru coffee site selection | CARTO Builder | Building |
 | Change Watch | ArcGIS Online / Experience Builder | Next |
 | Beaver survey planning map | Felt | Planned |
