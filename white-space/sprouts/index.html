@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sprouts white space</title>
+<meta name="description" content="Where could the next Sprouts go? An independent public-data study of Arizona, Nevada, New Mexico and Southern California: Overture Maps and Census data scored into H3 hexagons with Wherobots (Apache Sedona) and drawn in 3D with deck.gl. Not affiliated with Sprouts Farmers Market.">
+<link rel="stylesheet" href="../_lib/style.css">
+</head>
+<body>
+<div id="map"></div>
+
+<div class="panel" id="panel">
+  <button class="hide" id="hide" aria-label="Collapse panel">Hide</button>
+  <div class="kicker"><a href="../../">Pensador Solutions · Web GIS portfolio</a></div>
+  <h1 id="title"></h1>
+  <p class="sub" id="sub"></p>
+  <p class="note" id="indep"></p>
+
+  <h2>Market (color)</h2>
+  <ul class="legend" id="legend">
+    <li><label><input type="checkbox" data-m="0" checked><span class="sw" style="background:#2c7bb6"></span>White space</label><span class="n" id="n0"></span></li>
+    <li><label><input type="checkbox" data-m="1" checked><span class="sw" style="background:#a9a9a3"></span>Contested</label><span class="n" id="n1"></span></li>
+    <li><label><input type="checkbox" data-m="2" checked><span class="sw" style="background:#e66100"></span><span id="servedLab">Already served</span></label><span class="n" id="n2"></span></li>
+  </ul>
+  <p class="small" id="classText"></p>
+
+  <h2>Score (height)</h2>
+  <div style="display:flex;gap:14px;align-items:flex-end">
+    <div><div class="hbar"><span style="height:6px"></span><span style="height:12px"></span><span style="height:19px"></span><span style="height:26px"></span><span style="height:30px"></span></div><div class="hcap"><span>low</span><span>high</span></div></div>
+    <p class="small" style="margin:0" id="scoreText"></p>
+  </div>
+
+  <h2>Stores (zoom in)</h2>
+  <ul class="legend">
+    <li><label><input type="checkbox" id="ownOn" checked><span class="dot" style="background:#1b1b19;border:2px solid #fff;box-shadow:0 0 0 1px #1b1b19"></span><span id="ownLab"></span></label><span class="n" id="nd"></span></li>
+    <li><label><input type="checkbox" id="compOn" checked><span class="dot" style="background:#fff;border:2px solid #1b1b19"></span><span id="compLab"></span></label><span class="n" id="no"></span></li>
+  </ul>
+
+  <h2>Go to</h2>
+  <div class="jump" id="jump"></div>
+
+  <h2>Top white-space areas</h2>
+  <ol class="top" id="top"></ol>
+  <p class="small" id="topText"></p>
+
+  <h2>About</h2>
+  <p class="small"><b>Method:</b> the H3 resolution-8 grid and every join ran as spatial SQL on Apache Sedona in Wherobots Cloud, across every Overture place, road segment and building in the study area. <a href="https://github.com/b-rad-b/maps/tree/main/white-space">SQL, brand recipes and method</a>.</p>
+  <p class="small"><b>Sources:</b> Overture Maps Foundation places, transportation and buildings (release 2026-11-18; CDLA-Permissive 2.0 and ODbL); US Census Bureau 2020 population on a 500 m grid and American Community Survey 2020–2024 tract estimates (Wherobots Open Data); Census cartographic boundaries 2023. <span id="srcNote"></span></p>
+  <p class="small"><b>Map:</b> Web Mercator display, H3 hexagons (resolution 8, about 0.74 km² each). Public data only. Brad Bohall, Pensador Solutions, Tucson, Arizona · November 2026.</p>
+</div>
+
+<div class="north" id="north" title="North (click to reset view)"><svg id="narrow" width="22" height="40" viewBox="0 0 22 40"><text x="11" y="10" text-anchor="middle" font-size="11" font-weight="700" fill="#2b2b2b" font-family="Lato,system-ui">N</text><path d="M11 13 L17 36 L11 31 L5 36 Z" fill="#2b2b2b"/></svg></div>
+<div class="scale" id="scale"><span id="scaleTxt">–</span><div class="bar" id="scaleBar"></div></div>
+<div class="credit">Data: Overture Maps Foundation, US Census Bureau · Analysis: Wherobots (Apache Sedona) · Rendering: deck.gl · Independent study, not affiliated with the brand</div>
+<div class="tip" id="tip"></div>
+
+<script src="../../coffee-white-space/vendor/h3-js-4.2.1.umd.js"></script>
+<script src="../../coffee-white-space/vendor/deck.gl-9.1.14.min.js"></script>
+<script src="../../coffee-white-space/basemap.js"></script>
+<script src="data.js"></script>
+<script src="../_lib/app.js"></script>
+</body>
+</html>
