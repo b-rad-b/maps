@@ -1,8 +1,17 @@
-# Story maps · Pensador Solutions
+# Web GIS portfolio · Pensador Solutions
 
-Interactive story maps of trips, trails and places. Live at https://b-rad-b.github.io/maps/
+One real question per web GIS platform. Live at https://b-rad-b.github.io/maps/
 
-- `azt-border-to-vail/`: Arizona Trail, Mexican border to Vail (13 days, Passages 1–8)
-- `azt-border-to-patagonia/`: Arizona Trail, Mexican border to Patagonia (6 days, Passages 1–3)
+| Folder / link | Platform | Status |
+|---|---|---|
+| `azt-border-to-vail/` | MapLibre GL JS | Live |
+| `azt-border-to-patagonia/` | MapLibre GL JS | Live |
+| Drive-thru coffee site selection | CARTO Builder | Building |
+| Change Watch | ArcGIS Online / Experience Builder | Next |
+| Beaver survey planning map | Felt | Planned |
+| Historic route story | Mapbox | Planned |
+| Drive the shortlist | Google Maps Platform | Planned |
+| Coffee white space, US Southwest | Wherobots + deck.gl | Planned |
+| 80-acre land map | QGIS → qgis2web / Leaflet | Planned |
 
-Each map is a self-contained static folder (MapLibre GL JS 4.7.1, Lato, data bundled in `data.js`). No build step. Not for navigation.
+Self-hosted pieces are static folders with no build step (MapLibre GL JS 4.7.1, Lato, data bundled in the folder). Hosted-platform pieces (CARTO, ArcGIS Online, Felt) are linked from cards on the landing page. Browser API keys, when a piece needs one, are restricted to this site's URLs.
