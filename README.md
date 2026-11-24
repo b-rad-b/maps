@@ -8,7 +8,7 @@ One real question per web GIS platform. Live at https://b-rad-b.github.io/maps/
 | `azt-border-to-patagonia/` | MapLibre GL JS | Live |
 | `home-ranges/ealing/` | three.js | Live |
 | `coffee-white-space/` | Wherobots (Apache Sedona) + deck.gl | Live |
-| `white-space/optimyze/`, `the-joint/`, `sprouts/` | Wherobots + deck.gl (brand recipes) | Live |
+| `white-space/optimyze/`, `the-joint/`, `sprouts/`, `eegees/` | Wherobots + deck.gl (brand recipes) | Live |
 | Drive-thru coffee site selection | CARTO Builder | Building |
 | Change Watch | ArcGIS Online / Experience Builder | Next |
 | Beaver survey planning map | Felt | Planned |

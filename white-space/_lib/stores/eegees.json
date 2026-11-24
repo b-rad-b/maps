@@ -1,0 +1,163 @@
+[
+{
+"name": "Old Vail Rd. + Houghton Rd.",
+"area": "Tucson area",
+"lat": 32.0886233,
+"lon": -110.7748182,
+"address": "10158 E Old Vail Rd, Tucson, AZ 85747"
+},
+{
+"name": "St. Mary's Rd. + Grande Ave.",
+"area": "Tucson area",
+"lat": 32.2291427,
+"lon": -110.9905043,
+"address": "1209 W St Mary's Rd, Tucson, AZ 85745"
+},
+{
+"name": "Irvington Rd. + Campbell Ave.",
+"area": "Tucson area",
+"lat": 32.1628204,
+"lon": -110.9452242,
+"address": "1758 E Irvington Rd, Tucson, AZ 85714"
+},
+{
+"name": "Speedway Blvd. + Tucson Blvd.",
+"area": "Tucson area",
+"lat": 32.2358381,
+"lon": -110.9346635,
+"address": null
+},
+{
+"name": "Oracle Rd. + Roger Rd.",
+"area": "Tucson area",
+"lat": 32.2768258,
+"lon": -110.9776509,
+"address": "3872 N Oracle Rd, Tucson, AZ 85705"
+},
+{
+"name": "Valencia Rd. + 12th Ave.",
+"area": "Tucson area",
+"lat": 32.1335753,
+"lon": -110.9757223,
+"address": "401 W. Valencia Rd, Tucson, AZ 85746"
+},
+{
+"name": "Speedway Blvd. + Craycroft Rd.",
+"area": "Tucson area",
+"lat": 32.2362413,
+"lon": -110.8727698,
+"address": "5601 E Speedway Blvd, Tucson, AZ 85712"
+},
+{
+"name": "Oracle Rd. + Orange Grove Rd.",
+"area": "Tucson area",
+"lat": 32.3200962,
+"lon": -110.9741814,
+"address": "6210 N Oracle Rd, Tucson, AZ 85704"
+},
+{
+"name": "Thornydale Rd. + Ina Rd.",
+"area": "Tucson area",
+"lat": 32.336048,
+"lon": -111.04639,
+"address": "7110 N Thornydale Rd, Tucson, AZ 85741"
+},
+{
+"name": "Golf Links Rd. + Kolb Rd.",
+"area": "Tucson area",
+"lat": 32.1923202,
+"lon": -110.8384118,
+"address": "7235 E Golf Links Rd, Tucson, AZ 85730"
+},
+{
+"name": "Oracle Rd. + Magee Rd.",
+"area": "Tucson area",
+"lat": 32.3501944,
+"lon": -110.975854,
+"address": "7911 N Oracle Rd, Tucson, AZ 85704"
+},
+{
+"name": "Broadway Blvd. + Sarnoff Dr.",
+"area": "Tucson area",
+"lat": 32.2206458,
+"lon": -110.8141509,
+"address": "8320 E Broadway Blvd, Tucson, AZ 85710"
+},
+{
+"name": "Tanque Verde Rd. + Bear Canyon Rd.",
+"area": "Tucson area",
+"lat": 32.2574127,
+"lon": -110.8023233,
+"address": "8906 E Tanque Verde Rd, Tucson, AZ 85749"
+},
+{
+"name": "Speedway Blvd. + 6th Ave.",
+"area": "Tucson area",
+"lat": 32.2364595,
+"lon": -110.9676033,
+"address": "243 E Speedway Blvd, Tucson, AZ 85705"
+},
+{
+"name": "Alvernon Way + 22nd St",
+"area": "Tucson area",
+"lat": 32.2066313,
+"lon": -110.9079258,
+"address": "3950 E 22nd St, Tucson, AZ 85711"
+},
+{
+"name": "Irvington Rd. + I-19",
+"area": "Tucson area",
+"lat": 32.1640832,
+"lon": -110.9869184,
+"address": "4765 S Landing Center Dr, Tucson, AZ 85714"
+},
+{
+"name": "Valencia Rd. + Cardinal Ave.",
+"area": "Tucson area",
+"lat": 32.1344344,
+"lon": -111.02639,
+"address": "2790 W. Valencia Rd., Tucson, AZ 85746"
+},
+{
+"name": "Florence Blvd. + Peart Rd.",
+"area": "Casa Grande",
+"lat": 32.8799343,
+"lon": -111.7253442,
+"address": "1442 E Florence Blvd, Casa Grande, AZ 85122"
+},
+{
+"name": "Baseline Rd. + Val Vista Dr.",
+"area": "Phoenix area",
+"lat": 33.3786772,
+"lon": -111.755178,
+"address": "3535 E Baseline Rd, Gilbert, AZ 85234"
+},
+{
+"name": "Crismon Rd. + US 60",
+"area": "Phoenix area",
+"lat": 33.3890405,
+"lon": -111.6165796,
+"address": "1460 S Crismon Rd, Mesa, AZ 85209"
+},
+{
+"name": "Val Vista Dr. + Loop 202",
+"area": "Phoenix area",
+"lat": 33.2841869,
+"lon": -111.755983,
+"address": "3640 S Val Vista Dr, Gilbert, AZ 85297"
+},
+{
+"name": "Nogales Hwy. + Abrego Dr.",
+"area": "Tucson area",
+"lat": 31.9097805,
+"lon": -110.9790496,
+"address": "18731 S Nogales Hwy, Green Valley, AZ 85614"
+},
+{
+"name": "I-17 + Bell Rd",
+"area": "Phoenix area",
+"lat": 33.6397632,
+"lon": -112.1193073,
+"address": "2721 W Bell Rd, Phoenix, AZ 85053"
+}
+]

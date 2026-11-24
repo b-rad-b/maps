@@ -23,7 +23,9 @@
   $('ownLab').textContent = M.brand; $('compLab').textContent = M.comp_label.charAt(0).toUpperCase() + M.comp_label.slice(1);
   $('nd').textContent = fmt(M.n_own); $('no').textContent = fmt(M.n_comp);
   $('topText').textContent = `The best white-space hex in each area. A starting point for a broker search, not a site: parcels, zoning, traffic counts and a visit come next.`;
-  $('srcNote').textContent = `Store locations: Overture and Foursquare Open Source Places (Apache 2.0), matched by name and brand. Open data can miss or misplace a store, so check any area against ${M.brand}'s own store locator before acting on it.`;
+  $('srcNote').textContent = M.official
+    ? `${M.brand} locations: the brand's public store locator, read ${M.official}. Other stores: Overture and Foursquare Open Source Places (Apache 2.0), matched by name and brand, so a few may be missed or misplaced.`
+    : `Store locations: Overture and Foursquare Open Source Places (Apache 2.0), matched by name and brand. Open data can miss or misplace a store, so check any area against ${M.brand}'s own store locator before acting on it.`;
 
   const HOME = Object.assign({pitch: 40, bearing: 0}, M.home);
   const narrow = matchMedia('(max-width:620px)').matches;
@@ -33,7 +35,7 @@
   const METROS = M.metros;
   const jump = document.getElementById('jump');
   const home = document.createElement('button');
-  home.textContent = M.local ? 'Whole metro' : 'All four states';
+  home.textContent = M.local ? (M.metros.length > 5 || M.health_view ? 'Whole area' : 'Whole metro') : 'All four states';
   home.onclick = () => fly(HOME);
   jump.appendChild(home);
   METROS.forEach(([n, lon, lat, z]) => {
@@ -51,6 +53,19 @@
     li.onclick = () => fly({longitude: t.lon, latitude: t.lat, zoom: 12.2, pitch: 55, bearing: 0});
     top.appendChild(li);
   });
+
+  if (D.health) {
+    document.getElementById('healthBox').hidden = false;
+    document.getElementById('healthHead').textContent = `${M.brand} stores, one by one`;
+    document.getElementById('healthText').textContent = `Each store's ${M.radius_mi}-mile area, listed from most to least shared. "Shared" is the part of the store's nearby residents who also live within ${M.radius_mi} miles of another ${M.brand}. Rivals are ${M.comp_short} within ${M.radius_mi} miles, and "sister" is the distance to the nearest other ${M.brand}. A screen for which stores deserve a closer look, not a verdict on any store.`;
+    const hl = document.getElementById('health');
+    D.health.forEach(s => {
+      const li = document.createElement('li');
+      li.innerHTML = `${s.name} <span class="s">· ${s.area}</span><span class="a">${fmt(s.pop)} people · ${s.shared_pct}% shared · ${s.comp} rivals · sister ${s.sister_mi} mi</span>`;
+      li.onclick = () => fly({longitude: s.lon, latitude: s.lat, zoom: 12.6, pitch: 50, bearing: 0});
+      hl.appendChild(li);
+    });
+  }
 
   function fly(v) {
     view = Object.assign({}, view, v, {transitionDuration: 1400, transitionInterpolator: new FlyToInterpolator()});

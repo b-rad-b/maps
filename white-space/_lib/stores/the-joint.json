@@ -1,0 +1,1232 @@
+[
+{
+"lat": 35.204482,
+"lon": -106.650867,
+"state": "new-mexico",
+"url": "https://www.thejoint.com/new-mexico/albuquerque/albuquerque-north-47003"
+},
+{
+"lat": 35.023521,
+"lon": -106.712914,
+"state": "new-mexico",
+"url": "https://www.thejoint.com/new-mexico/albuquerque/las-estancias-47007"
+},
+{
+"lat": 35.146279,
+"lon": -106.688478,
+"state": "new-mexico",
+"url": "https://www.thejoint.com/new-mexico/albuquerque/montano-47002"
+},
+{
+"lat": 35.1748,
+"lon": -106.57283,
+"state": "new-mexico",
+"url": "https://www.thejoint.com/new-mexico/albuquerque/paseo-47001"
+},
+{
+"lat": 35.101162,
+"lon": -106.565817,
+"state": "new-mexico",
+"url": "https://www.thejoint.com/new-mexico/albuquerque/winrock-47005"
+},
+{
+"lat": 33.57,
+"lon": -117.707,
+"state": "california",
+"url": "https://www.thejoint.com/california/aliso-viejo/aliso-viejo-31055"
+},
+{
+"lat": 33.838303,
+"lon": -117.887382,
+"state": "california",
+"url": "https://www.thejoint.com/california/anaheim/anaheim-31147"
+},
+{
+"lat": 33.844318,
+"lon": -112.132079,
+"state": "arizona",
+"url": "https://www.thejoint.com/arizona/anthem/anthem-48052"
+},
+{
+"lat": 38.941889,
+"lon": -121.094603,
+"state": "california",
+"url": "https://www.thejoint.com/california/auburn/auburn-31094"
+},
+{
+"lat": 33.464262,
+"lon": -112.273044,
+"state": "arizona",
+"url": "https://www.thejoint.com/arizona/avondale/gateway-crossing-48019"
+},
+{
+"lat": 34.12813,
+"lon": -117.891313,
+"state": "california",
+"url": "https://www.thejoint.com/california/azusa/azusa-31183"
+},
+{
+"lat": 35.410879,
+"lon": -119.112274,
+"state": "california",
+"url": "https://www.thejoint.com/california/bakersfield/bakersfield-north-31244"
+},
+{
+"lat": 37.8621,
+"lon": -122.259,
+"state": "california",
+"url": "https://www.thejoint.com/california/berkeley/berkeley-31001"
+},
+{
+"lat": 35.318605,
+"lon": -106.574014,
+"state": "new-mexico",
+"url": "https://www.thejoint.com/new-mexico/bernalillo/rio-rancho-47008"
+},
+{
+"lat": 33.911742,
+"lon": -117.882173,
+"state": "california",
+"url": "https://www.thejoint.com/california/brea/brea-31112"
+},
+{
+"lat": 37.9616,
+"lon": -121.75,
+"state": "california",
+"url": "https://www.thejoint.com/california/brentwood/brentwood-lone-tree-31060"
+},
+{
+"lat": 33.439333,
+"lon": -112.555896,
+"state": "arizona",
+"url": "https://www.thejoint.com/arizona/buckeye/buckeye-48046"
+},
+{
+"lat": 33.458318,
+"lon": -112.500127,
+"state": "arizona",
+"url": "https://www.thejoint.com/arizona/buckeye/verrado-48065"
+},
+{
+"lat": 34.159717,
+"lon": -118.344254,
+"state": "california",
+"url": "https://www.thejoint.com/california/burbank/burbank-31205"
+},
+{
+"lat": 39.12375,
+"lon": -119.772526,
+"state": "nevada",
+"url": "https://www.thejoint.com/nevada/carson-city/carson-city-36014"
+},
+{
+"lat": 32.879296,
+"lon": -111.717776,
+"state": "arizona",
+"url": "https://www.thejoint.com/arizona/casa-grande/casa-grande-48043"
+},
+{
+"lat": 33.857252,
+"lon": -118.079267,
+"state": "california",
+"url": "https://www.thejoint.com/california/cerritos/cerritos-31228"
+},
+{
+"lat": 33.317925,
+"lon": -111.964082,
+"state": "arizona",
+"url": "https://www.thejoint.com/arizona/chandler/chandler-ahwatukee-48040"
+},
+{
+"lat": 33.263958,
+"lon": -111.857534,
+"state": "arizona",
+"url": "https://www.thejoint.com/arizona/chandler/ocotillo-48017"
+},
+{
+"lat": 34.000514,
+"lon": -117.731603,
+"state": "california",
+"url": "https://www.thejoint.com/california/chino-hills/chino-hills-31174"
+},
+{
+"lat": 32.6513,
+"lon": -116.969,
+"state": "california",
+"url": "https://www.thejoint.com/california/chula-vista/eastlake-31125"
+},
+{
+"lat": 32.602493,
+"lon": -117.081494,
+"state": "california",
+"url": "https://www.thejoint.com/california/chula-vista/palomar-trolley-31209"
+},
+{
+"lat": 38.664348,
+"lon": -121.271163,
+"state": "california",
+"url": "https://www.thejoint.com/california/citrus-heights/citrus-heights-31088"
+},
+{
+"lat": 36.836559,
+"lon": -119.696358,
+"state": "california",
+"url": "https://www.thejoint.com/california/clovis/clovis-31176"
+},
+{
+"lat": 37.971349,
+"lon": -122.056662,
+"state": "california",
+"url": "https://www.thejoint.com/california/concord/concord-ca-31200"
+},
+{
+"lat": 33.819267,
+"lon": -117.519459,
+"state": "california",
+"url": "https://www.thejoint.com/california/corona/corona-south-31230"
+},
+{
+"lat": 33.6717,
+"lon": -117.92,
+"state": "california",
+"url": "https://www.thejoint.com/california/costa-mesa/costa-mesa-31039"
+},
+{
+"lat": 33.99772,
+"lon": -118.394838,
+"state": "california",
+"url": "https://www.thejoint.com/california/culver-city/culver-city-31013"
+},
+{
+"lat": 37.667751,
+"lon": -122.469253,
+"state": "california",
+"url": "https://www.thejoint.com/california/daly-city/daly-city-31240"
+},
+{
+"lat": 37.81912,
+"lon": -121.99772,
+"state": "california",
+"url": "https://www.thejoint.com/california/danville/danville-31189"
+},
+{
+"lat": 38.562403,
+"lon": -121.766047,
+"state": "california",
+"url": "https://www.thejoint.com/california/davis/davis-31095"
+},
+{
+"lat": 33.927581,
+"lon": -118.126407,
+"state": "california",
+"url": "https://www.thejoint.com/california/downey/downey-31109"
+},
+{
+"lat": 33.9767,
+"lon": -117.553,
+"state": "california",
+"url": "https://www.thejoint.com/california/eastvale/eastvale-gateway-31118"
+},
+{
+"lat": 32.808471,
+"lon": -116.963442,
+"state": "california",
+"url": "https://www.thejoint.com/california/el-cajon/el-cajon-31191"
+},
+{
+"lat": 38.40851,
+"lon": -121.418432,
+"state": "california",
+"url": "https://www.thejoint.com/california/elk-grove/elk-grove-commons-31074"
+},
+{
+"lat": 33.065283,
+"lon": -117.264343,
+"state": "california",
+"url": "https://www.thejoint.com/california/encinitas/encinitas-31006"
+},
+{
+"lat": 33.1112,
+"lon": -117.098,
+"state": "california",
+"url": "https://www.thejoint.com/california/escondido/escondido-31011"
+},
+{
+"lat": 35.176671,
+"lon": -111.666509,
+"state": "arizona",
+"url": "https://www.thejoint.com/arizona/flagstaff/flagstaff-48047"
+},
+{
+"lat": 38.655894,
+"lon": -121.122354,
+"state": "california",
+"url": "https://www.thejoint.com/california/folsom/folsom-31081"
+},
+{
+"lat": 34.137676,
+"lon": -117.452233,
+"state": "california",
+"url": "https://www.thejoint.com/california/fontana/sierra-lakes-village-31142"
+},
+{
+"lat": 37.568153,
+"lon": -122.024922,
+"state": "california",
+"url": "https://www.thejoint.com/california/fremont/fremont-31185"
+},
+{
+"lat": 36.847909,
+"lon": -119.789194,
+"state": "california",
+"url": "https://www.thejoint.com/california/fresno/fresno-31175"
+},
+{
+"lat": 36.830949,
+"lon": -119.90625,
+"state": "california",
+"url": "https://www.thejoint.com/california/fresno/west-fresno-31241"
+},
+{
+"lat": 33.329991,
+"lon": -111.790944,
+"state": "arizona",
+"url": "https://www.thejoint.com/arizona/gilbert/gilbert-town-square-48039"
+},
+{
+"lat": 33.300216,
+"lon": -111.743554,
+"state": "arizona",
+"url": "https://www.thejoint.com/arizona/gilbert/san-tan-village-48035"
+},
+{
+"lat": 37.005577,
+"lon": -121.552431,
+"state": "california",
+"url": "https://www.thejoint.com/california/gilroy/gilroy-31252"
+},
+{
+"lat": 33.670378,
+"lon": -112.188349,
+"state": "arizona",
+"url": "https://www.thejoint.com/arizona/glendale/arrowhead-ranch-48016"
+},
+{
+"lat": 34.151253,
+"lon": -118.244866,
+"state": "california",
+"url": "https://www.thejoint.com/california/glendale/glendale-north-31027"
+},
+{
+"lat": 38.626739,
+"lon": -121.263669,
+"state": "california",
+"url": "https://www.thejoint.com/california/gold-river/gold-river-31076"
+},
+{
+"lat": 34.441017,
+"lon": -119.8244,
+"state": "california",
+"url": "https://www.thejoint.com/california/goleta/goleta-31143"
+},
+{
+"lat": 33.463782,
+"lon": -112.35945,
+"state": "arizona",
+"url": "https://www.thejoint.com/arizona/goodyear/goodyear-48020"
+},
+{
+"lat": 37.651728,
+"lon": -122.091079,
+"state": "california",
+"url": "https://www.thejoint.com/california/hayward/hayward-31195"
+},
+{
+"lat": 36.055521,
+"lon": -114.968979,
+"state": "nevada",
+"url": "https://www.thejoint.com/nevada/henderson/cadence-village-36017"
+},
+{
+"lat": 36.063216,
+"lon": -115.043516,
+"state": "nevada",
+"url": "https://www.thejoint.com/nevada/henderson/henderson-sunset-36006"
+},
+{
+"lat": 36.026959,
+"lon": -115.084121,
+"state": "nevada",
+"url": "https://www.thejoint.com/nevada/henderson/pebble-marketplace-36008"
+},
+{
+"lat": 33.6808,
+"lon": -118.003,
+"state": "california",
+"url": "https://www.thejoint.com/california/huntington-beach/huntington-beach-west-31038"
+},
+{
+"lat": 33.930084,
+"lon": -118.322843,
+"state": "california",
+"url": "https://www.thejoint.com/california/inglewood/inglewood-31196"
+},
+{
+"lat": 33.6839,
+"lon": -117.812,
+"state": "california",
+"url": "https://www.thejoint.com/california/irvine/irvine-crossroads-31151"
+},
+{
+"lat": 32.764517,
+"lon": -117.023863,
+"state": "california",
+"url": "https://www.thejoint.com/california/la-mesa/la-mesa-31206"
+},
+{
+"lat": 34.1116,
+"lon": -117.761,
+"state": "california",
+"url": "https://www.thejoint.com/california/la-verne/la-verne-31017"
+},
+{
+"lat": 33.6191,
+"lon": -117.703,
+"state": "california",
+"url": "https://www.thejoint.com/california/lake-forest/lake-forest-31004"
+},
+{
+"lat": 33.85393,
+"lon": -118.133392,
+"state": "california",
+"url": "https://www.thejoint.com/california/lakewood/lakewood-galleria-31030"
+},
+{
+"lat": 36.039947,
+"lon": -115.196469,
+"state": "nevada",
+"url": "https://www.thejoint.com/nevada/las-vegas/blue-diamond-36003"
+},
+{
+"lat": 36.016512,
+"lon": -115.116991,
+"state": "nevada",
+"url": "https://www.thejoint.com/nevada/las-vegas/eastern-and-richmar-36005"
+},
+{
+"lat": 36.29015,
+"lon": -115.285768,
+"state": "nevada",
+"url": "https://www.thejoint.com/nevada/las-vegas/montecito-marketplace-36001"
+},
+{
+"lat": 36.271154,
+"lon": -115.207249,
+"state": "nevada",
+"url": "https://www.thejoint.com/nevada/las-vegas/north-decatur-215-36011"
+},
+{
+"lat": 36.054685,
+"lon": -115.243765,
+"state": "nevada",
+"url": "https://www.thejoint.com/nevada/las-vegas/rainbow-warm-springs-36013"
+},
+{
+"lat": 36.195836,
+"lon": -115.248789,
+"state": "nevada",
+"url": "https://www.thejoint.com/nevada/las-vegas/rocksprings-plaza-36004"
+},
+{
+"lat": 36.160505,
+"lon": -115.318961,
+"state": "nevada",
+"url": "https://www.thejoint.com/nevada/las-vegas/summerlin-36002"
+},
+{
+"lat": 36.09695,
+"lon": -115.296276,
+"state": "nevada",
+"url": "https://www.thejoint.com/nevada/las-vegas/tropicana-beltway-36009"
+},
+{
+"lat": 33.376536,
+"lon": -112.187992,
+"state": "arizona",
+"url": "https://www.thejoint.com/arizona/laveen-village/laveen-48056"
+},
+{
+"lat": 33.494805,
+"lon": -112.339535,
+"state": "arizona",
+"url": "https://www.thejoint.com/arizona/litchfield-park/dysart-and-indian-school-48050"
+},
+{
+"lat": 37.701699,
+"lon": -121.745552,
+"state": "california",
+"url": "https://www.thejoint.com/california/livermore/livermore-31079"
+},
+{
+"lat": 33.757751,
+"lon": -118.108478,
+"state": "california",
+"url": "https://www.thejoint.com/california/long-beach/long-beach-31029"
+},
+{
+"lat": 34.0485,
+"lon": -118.338,
+"state": "california",
+"url": "https://www.thejoint.com/california/los-angeles/midtown-crossing-31160"
+},
+{
+"lat": 34.0985,
+"lon": -118.345,
+"state": "california",
+"url": "https://www.thejoint.com/california/los-angeles/sunset-galleria-31149"
+},
+{
+"lat": 33.901635,
+"lon": -118.384638,
+"state": "california",
+"url": "https://www.thejoint.com/california/manhattan-beach/manhattan-beach-31184"
+},
+{
+"lat": 32.354574,
+"lon": -111.093108,
+"state": "arizona",
+"url": "https://www.thejoint.com/arizona/marana/marana-48053"
+},
+{
+"lat": 33.064609,
+"lon": -112.050219,
+"state": "arizona",
+"url": "https://www.thejoint.com/arizona/maricopa/maricopa-48049"
+},
+{
+"lat": 33.98029,
+"lon": -118.437737,
+"state": "california",
+"url": "https://www.thejoint.com/california/marina-del-rey/marina-del-rey-31193"
+},
+{
+"lat": 33.684595,
+"lon": -117.178815,
+"state": "california",
+"url": "https://www.thejoint.com/california/menifee/menifee-31212"
+},
+{
+"lat": 37.33273,
+"lon": -120.468577,
+"state": "california",
+"url": "https://www.thejoint.com/california/merced/merced-31255"
+},
+{
+"lat": 33.38108,
+"lon": -111.757071,
+"state": "arizona",
+"url": "https://www.thejoint.com/arizona/mesa/dana-park-48007"
+},
+{
+"lat": 33.38024,
+"lon": -111.602637,
+"state": "arizona",
+"url": "https://www.thejoint.com/arizona/mesa/east-mesa-48042"
+},
+{
+"lat": 33.321225,
+"lon": -111.685221,
+"state": "arizona",
+"url": "https://www.thejoint.com/arizona/mesa/mesa-gateway-48062"
+},
+{
+"lat": 33.453505,
+"lon": -111.687955,
+"state": "arizona",
+"url": "https://www.thejoint.com/arizona/mesa/red-mountain-48026"
+},
+{
+"lat": 37.428325,
+"lon": -121.920842,
+"state": "california",
+"url": "https://www.thejoint.com/california/milpitas/mccarthy-ranch-31092"
+},
+{
+"lat": 34.260674,
+"lon": -118.466841,
+"state": "california",
+"url": "https://www.thejoint.com/california/mission-hills/mission-hills-31224"
+},
+{
+"lat": 34.139767,
+"lon": -118.013631,
+"state": "california",
+"url": "https://www.thejoint.com/california/monrovia/monrovia-31162"
+},
+{
+"lat": 36.583063,
+"lon": -121.899901,
+"state": "california",
+"url": "https://www.thejoint.com/california/monterey/monterey-31251"
+},
+{
+"lat": 34.0378,
+"lon": -118.144,
+"state": "california",
+"url": "https://www.thejoint.com/california/monterey-park/monterey-park-31153"
+},
+{
+"lat": 33.94269,
+"lon": -117.242339,
+"state": "california",
+"url": "https://www.thejoint.com/california/moreno-valley/moreno-valley-31229"
+},
+{
+"lat": 38.283392,
+"lon": -122.275368,
+"state": "california",
+"url": "https://www.thejoint.com/california/napa/napa-31234"
+},
+{
+"lat": 32.676327,
+"lon": -117.091429,
+"state": "california",
+"url": "https://www.thejoint.com/california/national-city/national-city-31181"
+},
+{
+"lat": 34.182603,
+"lon": -118.395899,
+"state": "california",
+"url": "https://www.thejoint.com/california/north-hollywood/noho-west-31198"
+},
+{
+"lat": 36.260139,
+"lon": -115.156026,
+"state": "nevada",
+"url": "https://www.thejoint.com/nevada/north-las-vegas/north-las-vegas-36016"
+},
+{
+"lat": 34.235628,
+"lon": -118.55931,
+"state": "california",
+"url": "https://www.thejoint.com/california/northridge/northridge-31203"
+},
+{
+"lat": 33.2067,
+"lon": -117.284,
+"state": "california",
+"url": "https://www.thejoint.com/california/oceanside/oceanside-31007"
+},
+{
+"lat": 33.776236,
+"lon": -117.866828,
+"state": "california",
+"url": "https://www.thejoint.com/california/orange/orange-town-and-country-31002"
+},
+{
+"lat": 34.221833,
+"lon": -119.161778,
+"state": "california",
+"url": "https://www.thejoint.com/california/oxnard/oxnard-31202"
+},
+{
+"lat": 34.596904,
+"lon": -118.147047,
+"state": "california",
+"url": "https://www.thejoint.com/california/palmdale/palmdale-31235"
+},
+{
+"lat": 34.151165,
+"lon": -118.076024,
+"state": "california",
+"url": "https://www.thejoint.com/california/pasadena/pasadena-east-31028"
+},
+{
+"lat": 33.637749,
+"lon": -112.217427,
+"state": "arizona",
+"url": "https://www.thejoint.com/arizona/peoria/arrowhead-towne-center-48015"
+},
+{
+"lat": 33.708614,
+"lon": -112.270931,
+"state": "arizona",
+"url": "https://www.thejoint.com/arizona/peoria/lake-pleasant-48029"
+},
+{
+"lat": 33.553117,
+"lon": -112.269038,
+"state": "arizona",
+"url": "https://www.thejoint.com/arizona/peoria/park-west-48028"
+},
+{
+"lat": 33.466074,
+"lon": -112.081964,
+"state": "arizona",
+"url": "https://www.thejoint.com/arizona/phoenix/7th-ave-mcdowell-48018"
+},
+{
+"lat": 33.494191,
+"lon": -111.988598,
+"state": "arizona",
+"url": "https://www.thejoint.com/arizona/phoenix/arcadia-48011"
+},
+{
+"lat": 33.510384,
+"lon": -112.046524,
+"state": "arizona",
+"url": "https://www.thejoint.com/arizona/phoenix/camelback-48005"
+},
+{
+"lat": 33.674487,
+"lon": -111.975409,
+"state": "arizona",
+"url": "https://www.thejoint.com/arizona/phoenix/desert-ridge-48027"
+},
+{
+"lat": 33.378893,
+"lon": -112.030769,
+"state": "arizona",
+"url": "https://www.thejoint.com/arizona/phoenix/legacy-village-48032"
+},
+{
+"lat": 33.581433,
+"lon": -112.126848,
+"state": "arizona",
+"url": "https://www.thejoint.com/arizona/phoenix/metro-center-48030"
+},
+{
+"lat": 33.6398,
+"lon": -112.072,
+"state": "arizona",
+"url": "https://www.thejoint.com/arizona/phoenix/moon-valley-48006"
+},
+{
+"lat": 33.714092,
+"lon": -112.10953,
+"state": "arizona",
+"url": "https://www.thejoint.com/arizona/phoenix/norterra-48022"
+},
+{
+"lat": 33.600142,
+"lon": -111.978639,
+"state": "arizona",
+"url": "https://www.thejoint.com/arizona/phoenix/paradise-village-48004"
+},
+{
+"lat": 33.982122,
+"lon": -118.098535,
+"state": "california",
+"url": "https://www.thejoint.com/california/pico-rivera/pico-rivera-31204"
+},
+{
+"lat": 37.994452,
+"lon": -122.286456,
+"state": "california",
+"url": "https://www.thejoint.com/california/pinole/pinole-31059"
+},
+{
+"lat": 37.698142,
+"lon": -121.875138,
+"state": "california",
+"url": "https://www.thejoint.com/california/pleasanton/pleasanton-31207"
+},
+{
+"lat": 34.177055,
+"lon": -119.21403,
+"state": "california",
+"url": "https://www.thejoint.com/california/port-hueneme/port-hueneme-31201"
+},
+{
+"lat": 34.276161,
+"lon": -118.5731,
+"state": "california",
+"url": "https://www.thejoint.com/california/porter-ranch/porter-ranch-31033"
+},
+{
+"lat": 34.578517,
+"lon": -112.362774,
+"state": "arizona",
+"url": "https://www.thejoint.com/arizona/prescott-valley/prescott-valley-48051"
+},
+{
+"lat": 33.264824,
+"lon": -111.684609,
+"state": "arizona",
+"url": "https://www.thejoint.com/arizona/queen-creek/power-ranch-48064"
+},
+{
+"lat": 33.252124,
+"lon": -111.638259,
+"state": "arizona",
+"url": "https://www.thejoint.com/arizona/queen-creek/queen-creek-48031"
+},
+{
+"lat": 34.1203,
+"lon": -117.535,
+"state": "california",
+"url": "https://www.thejoint.com/california/rancho-cucamonga/winery-estate-marketplace-31062"
+},
+{
+"lat": 34.059931,
+"lon": -117.188022,
+"state": "california",
+"url": "https://www.thejoint.com/california/redlands/the-redlands-31129"
+},
+{
+"lat": 39.477511,
+"lon": -119.792978,
+"state": "nevada",
+"url": "https://www.thejoint.com/nevada/reno/kietzke-36010"
+},
+{
+"lat": 39.529902,
+"lon": -119.866152,
+"state": "nevada",
+"url": "https://www.thejoint.com/nevada/reno/nw-reno-36007"
+},
+{
+"lat": 39.438844,
+"lon": -119.761177,
+"state": "nevada",
+"url": "https://www.thejoint.com/nevada/reno/south-meadows-36015"
+},
+{
+"lat": 34.131674,
+"lon": -117.394186,
+"state": "california",
+"url": "https://www.thejoint.com/california/rialto/rialto-31192"
+},
+{
+"lat": 34.073288,
+"lon": -117.370651,
+"state": "california",
+"url": "https://www.thejoint.com/california/rialto/rialto-south-31227"
+},
+{
+"lat": 33.955066,
+"lon": -117.392969,
+"state": "california",
+"url": "https://www.thejoint.com/california/riverside/riverside-plaza-31135"
+},
+{
+"lat": 38.801157,
+"lon": -121.203292,
+"state": "california",
+"url": "https://www.thejoint.com/california/rocklin/rocklin-31090"
+},
+{
+"lat": 34.075313,
+"lon": -118.071818,
+"state": "california",
+"url": "https://www.thejoint.com/california/rosemead/rosemead-31145"
+},
+{
+"lat": 38.792493,
+"lon": -121.358093,
+"state": "california",
+"url": "https://www.thejoint.com/california/roseville/blue-oaks-31254"
+},
+{
+"lat": 38.790097,
+"lon": -121.279032,
+"state": "california",
+"url": "https://www.thejoint.com/california/roseville/nugget-plaza-31080"
+},
+{
+"lat": 38.740457,
+"lon": -121.227534,
+"state": "california",
+"url": "https://www.thejoint.com/california/roseville/renaissance-creek-31077"
+},
+{
+"lat": 38.452201,
+"lon": -121.373862,
+"state": "california",
+"url": "https://www.thejoint.com/california/sacramento/calvine-pointe-31096"
+},
+{
+"lat": 38.541129,
+"lon": -121.482424,
+"state": "california",
+"url": "https://www.thejoint.com/california/sacramento/crocker-village-31093"
+},
+{
+"lat": 38.464793,
+"lon": -121.49331,
+"state": "california",
+"url": "https://www.thejoint.com/california/sacramento/delta-shores-31078"
+},
+{
+"lat": 38.575103,
+"lon": -121.401917,
+"state": "california",
+"url": "https://www.thejoint.com/california/sacramento/loehmanns-plaza-31073"
+},
+{
+"lat": 38.567517,
+"lon": -121.486318,
+"state": "california",
+"url": "https://www.thejoint.com/california/sacramento/midtown-r-street-31086"
+},
+{
+"lat": 38.654964,
+"lon": -121.524992,
+"state": "california",
+"url": "https://www.thejoint.com/california/sacramento/natomas-31085"
+},
+{
+"lat": 36.711684,
+"lon": -121.652158,
+"state": "california",
+"url": "https://www.thejoint.com/california/salinas/salinas-31231"
+},
+{
+"lat": 32.821044,
+"lon": -117.180864,
+"state": "california",
+"url": "https://www.thejoint.com/california/san-diego/balboa-31178"
+},
+{
+"lat": 32.9842,
+"lon": -117.078,
+"state": "california",
+"url": "https://www.thejoint.com/california/san-diego/carmel-mountain-31003"
+},
+{
+"lat": 32.911,
+"lon": -117.147,
+"state": "california",
+"url": "https://www.thejoint.com/california/san-diego/mira-mesa-31012"
+},
+{
+"lat": 32.779974,
+"lon": -117.129435,
+"state": "california",
+"url": "https://www.thejoint.com/california/san-diego/mission-valley-31009"
+},
+{
+"lat": 32.7499,
+"lon": -117.205,
+"state": "california",
+"url": "https://www.thejoint.com/california/san-diego/point-loma-31141"
+},
+{
+"lat": 37.732803,
+"lon": -122.491106,
+"state": "california",
+"url": "https://www.thejoint.com/california/san-francisco/san-francisco-lakeshore-31239"
+},
+{
+"lat": 37.258536,
+"lon": -121.874593,
+"state": "california",
+"url": "https://www.thejoint.com/california/san-jose/almaden-ranch-31087"
+},
+{
+"lat": 37.38137,
+"lon": -121.895916,
+"state": "california",
+"url": "https://www.thejoint.com/california/san-jose/brokaw-plaza-31084"
+},
+{
+"lat": 37.262823,
+"lon": -121.935083,
+"state": "california",
+"url": "https://www.thejoint.com/california/san-jose/camden-park-31075"
+},
+{
+"lat": 37.339445,
+"lon": -121.841862,
+"state": "california",
+"url": "https://www.thejoint.com/california/san-jose/plaza-de-san-jose-31253"
+},
+{
+"lat": 37.302492,
+"lon": -121.865611,
+"state": "california",
+"url": "https://www.thejoint.com/california/san-jose/the-plant-31082"
+},
+{
+"lat": 37.292503,
+"lon": -121.994188,
+"state": "california",
+"url": "https://www.thejoint.com/california/san-jose/westgate-west-31091"
+},
+{
+"lat": 37.687326,
+"lon": -122.13657,
+"state": "california",
+"url": "https://www.thejoint.com/california/san-leandro/san-leandro-31194"
+},
+{
+"lat": 35.249162,
+"lon": -120.642554,
+"state": "california",
+"url": "https://www.thejoint.com/california/san-luis-obispo/san-luis-obispo-31265"
+},
+{
+"lat": 33.1417,
+"lon": -117.191,
+"state": "california",
+"url": "https://www.thejoint.com/california/san-marcos/san-marcos-grand-plaza-31155"
+},
+{
+"lat": 37.579905,
+"lon": -122.333037,
+"state": "california",
+"url": "https://www.thejoint.com/california/san-mateo/san-mateo-31264"
+},
+{
+"lat": 33.180392,
+"lon": -111.582375,
+"state": "arizona",
+"url": "https://www.thejoint.com/arizona/san-tan-valley/hunt-highway-48063"
+},
+{
+"lat": 33.249792,
+"lon": -111.561709,
+"state": "arizona",
+"url": "https://www.thejoint.com/arizona/san-tan-valley/san-tan-valley-48057"
+},
+{
+"lat": 33.6982,
+"lon": -117.885,
+"state": "california",
+"url": "https://www.thejoint.com/california/santa-ana/santa-ana-bristol-31152"
+},
+{
+"lat": 35.673716,
+"lon": -105.953111,
+"state": "new-mexico",
+"url": "https://www.thejoint.com/new-mexico/santa-fe/santa-fe-47006"
+},
+{
+"lat": 34.922079,
+"lon": -120.426537,
+"state": "california",
+"url": "https://www.thejoint.com/california/santa-maria/santa-maria-31242"
+},
+{
+"lat": 32.8407,
+"lon": -116.982,
+"state": "california",
+"url": "https://www.thejoint.com/california/santee/santee-31099"
+},
+{
+"lat": 33.637044,
+"lon": -111.892861,
+"state": "arizona",
+"url": "https://www.thejoint.com/arizona/scottsdale/corporate-office-hq-00000"
+},
+{
+"lat": 33.526215,
+"lon": -111.924658,
+"state": "arizona",
+"url": "https://www.thejoint.com/arizona/scottsdale/hilton-village-48003"
+},
+{
+"lat": 33.622419,
+"lon": -111.873865,
+"state": "arizona",
+"url": "https://www.thejoint.com/arizona/scottsdale/mcdowell-mountain-ranch-48010"
+},
+{
+"lat": 33.585402,
+"lon": -111.924856,
+"state": "arizona",
+"url": "https://www.thejoint.com/arizona/scottsdale/scottsdale-shea-48014"
+},
+{
+"lat": 34.279908,
+"lon": -118.739706,
+"state": "california",
+"url": "https://www.thejoint.com/california/simi-valley/simi-valley-31182"
+},
+{
+"lat": 33.952576,
+"lon": -118.184995,
+"state": "california",
+"url": "https://www.thejoint.com/california/south-gate/south-gate-31110"
+},
+{
+"lat": 39.53402,
+"lon": -119.717866,
+"state": "nevada",
+"url": "https://www.thejoint.com/nevada/sparks/sparks-36012"
+},
+{
+"lat": 33.59592,
+"lon": -112.416969,
+"state": "arizona",
+"url": "https://www.thejoint.com/arizona/surprise/cactus-303-prasada-48067"
+},
+{
+"lat": 33.638231,
+"lon": -112.443358,
+"state": "arizona",
+"url": "https://www.thejoint.com/arizona/surprise/citrus-and-bell-48060"
+},
+{
+"lat": 33.608728,
+"lon": -112.360429,
+"state": "arizona",
+"url": "https://www.thejoint.com/arizona/surprise/litchfield-waddell-48045"
+},
+{
+"lat": 33.638263,
+"lon": -112.365059,
+"state": "arizona",
+"url": "https://www.thejoint.com/arizona/surprise/surprise-48024"
+},
+{
+"lat": 33.5412,
+"lon": -117.142,
+"state": "california",
+"url": "https://www.thejoint.com/california/temecula/rancho-temecula-31065"
+},
+{
+"lat": 33.432574,
+"lon": -111.902933,
+"state": "arizona",
+"url": "https://www.thejoint.com/arizona/tempe/tempe-marketplace-48041"
+},
+{
+"lat": 33.377864,
+"lon": -111.929437,
+"state": "arizona",
+"url": "https://www.thejoint.com/arizona/tempe/tempe-shops-48009"
+},
+{
+"lat": 34.186486,
+"lon": -118.909183,
+"state": "california",
+"url": "https://www.thejoint.com/california/thousand-oaks/thousand-oaks-ca-31186"
+},
+{
+"lat": 33.791683,
+"lon": -118.330393,
+"state": "california",
+"url": "https://www.thejoint.com/california/torrance/torrance-31197"
+},
+{
+"lat": 37.740744,
+"lon": -121.450601,
+"state": "california",
+"url": "https://www.thejoint.com/california/tracy/tracy-31268"
+},
+{
+"lat": 32.249971,
+"lon": -110.890997,
+"state": "arizona",
+"url": "https://www.thejoint.com/arizona/tucson/grant-swan-48033"
+},
+{
+"lat": 32.132203,
+"lon": -111.003708,
+"state": "arizona",
+"url": "https://www.thejoint.com/arizona/tucson/south-tucson-48055"
+},
+{
+"lat": 32.346573,
+"lon": -110.978072,
+"state": "arizona",
+"url": "https://www.thejoint.com/arizona/tucson/tucson-northwest-48025"
+},
+{
+"lat": 37.521465,
+"lon": -120.883653,
+"state": "california",
+"url": "https://www.thejoint.com/california/turlock/turlock-31248"
+},
+{
+"lat": 34.131193,
+"lon": -117.638272,
+"state": "california",
+"url": "https://www.thejoint.com/california/upland/upland-31179"
+},
+{
+"lat": 38.366595,
+"lon": -121.96338,
+"state": "california",
+"url": "https://www.thejoint.com/california/vacaville/vacaville-31083"
+},
+{
+"lat": 34.4211,
+"lon": -118.565,
+"state": "california",
+"url": "https://www.thejoint.com/california/valencia/valencia-the-promenade-31158"
+},
+{
+"lat": 34.1725,
+"lon": -118.447,
+"state": "california",
+"url": "https://www.thejoint.com/california/van-nuys/van-nuys-31148"
+},
+{
+"lat": 34.2641,
+"lon": -119.215,
+"state": "california",
+"url": "https://www.thejoint.com/california/ventura/ventura-village-31144"
+},
+{
+"lat": 36.291681,
+"lon": -119.312861,
+"state": "california",
+"url": "https://www.thejoint.com/california/visalia/visalia-31243"
+},
+{
+"lat": 37.928444,
+"lon": -122.017043,
+"state": "california",
+"url": "https://www.thejoint.com/california/walnut-creek/walnut-creek-31180"
+},
+{
+"lat": 36.915538,
+"lon": -121.768228,
+"state": "california",
+"url": "https://www.thejoint.com/california/watsonville/watsonville-31256"
+},
+{
+"lat": 34.0361,
+"lon": -117.913,
+"state": "california",
+"url": "https://www.thejoint.com/california/west-covina/west-covina-31019"
+},
+{
+"lat": 38.552576,
+"lon": -121.536148,
+"state": "california",
+"url": "https://www.thejoint.com/california/west-sacramento/west-sacramento-31089"
+},
+{
+"lat": 33.723733,
+"lon": -117.988603,
+"state": "california",
+"url": "https://www.thejoint.com/california/westminster/westminster-pavilions-place-31156"
+},
+{
+"lat": 33.942314,
+"lon": -117.995224,
+"state": "california",
+"url": "https://www.thejoint.com/california/whittier/whittier-31018"
+},
+{
+"lat": 33.980532,
+"lon": -118.050448,
+"state": "california",
+"url": "https://www.thejoint.com/california/whittier/whittier-west-31210"
+},
+{
+"lat": 34.1573,
+"lon": -118.634,
+"state": "california",
+"url": "https://www.thejoint.com/california/woodland-hills/woodland-hills-31032"
+},
+{
+"lat": 32.701942,
+"lon": -114.603748,
+"state": "arizona",
+"url": "https://www.thejoint.com/arizona/yuma/yuma-48048"
+}
+]
