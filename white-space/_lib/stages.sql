@@ -87,3 +87,18 @@ WHERE bbox.xmin BETWEEN -121.4 AND -102.9 AND bbox.ymin BETWEEN 31.3 AND 42.1 AN
 -- ===== counties
 SELECT GEOID, NAME, STATEFP FROM wherobots_open_data.us_census.tiger_county WHERE STATEFP IN ('04','32','35','06')
 ;
+
+-- ===== qsr2places (eegee's study: sub chains, Sonic, Dutch Bros and Bahama Buck's from Overture and Foursquare, Arizona)
+SELECT name, brand, basic_category, tax, confidence, lon, lat, src FROM (
+  SELECT names.primary AS name, brand.names.primary AS brand, basic_category, taxonomy.primary AS tax, confidence,
+         ST_X(geometry) AS lon, ST_Y(geometry) AS lat, 'overture' AS src
+  FROM wherobots_open_data.overture_maps_foundation.places_place
+  WHERE bbox.xmin BETWEEN -115.0 AND -109.0 AND bbox.ymin BETWEEN 31.3 AND 37.1
+    AND (operating_status IS NULL OR operating_status = 'open')
+    AND lower(concat_ws(' ', names.primary, brand.names.primary)) RLIKE 'eegee|sonic drive|bahama buck|dutch bros|jersey mike|jimmy john|firehouse subs|subway|port of subs|potbelly|capriotti|cheba hut|which wich|mr\\.? goodcents|baggin'
+  UNION ALL
+  SELECT name, CAST(NULL AS STRING), concat_ws('; ', fsq_category_labels), CAST(NULL AS STRING), 1.0, longitude, latitude, 'fsq'
+  FROM wherobots_open_data.foursquare.places
+  WHERE country = 'US' AND region = 'AZ' AND date_closed IS NULL
+    AND lower(name) RLIKE '^eegee|^sonic drive|^bahama buck|^dutch bros|^jersey mike|^jimmy john|^firehouse subs|^subway|^port of subs|^potbelly|^capriotti|^cheba hut|^which wich|^baggin'
+)

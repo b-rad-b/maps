@@ -12,11 +12,13 @@ JUNK = r"support office|closed|coming soon|floral|warehouse|careers|bakery|count
 RECOVERY_NAME = r"cryo|cold plunge|plunge|red light|infrared|sauna|float|recovery|recover\b|hyperbaric|iv drip|iv lounge|iv therapy|hydration|contrast therap|biohack|longevity"
 RECOVERY_EXCLUDE = r"addict|detox|rehab|sober|treatment|behavioral|mental|trauma|eating|wound|towing|outpatient|chiropract|physical therapy|dental|pediatric|recovery (?:center|centers|services|village)"
 
+SUBS = r"subway|jersey mike|jimmy john|firehouse subs|port of subs|potbelly|capriotti|cheba hut|which wich|baggin"
+
 BRANDS = {
     "sprouts": dict(
         title="Where could the next Sprouts go?",
         short="Sprouts white space",
-        brand="Sprouts Farmers Market",
+        brand="Sprouts Farmers Market", own_file="sprouts.json",
         concept="natural and specialty grocery",
         radius_mi=3,
         own=lambda p: (p.lbrand.str.contains("sprouts farmers market") | p.lname.str.match(r"sprouts farmers market")) & ~p.lname.str.contains(JUNK),
@@ -36,7 +38,7 @@ BRANDS = {
     "the-joint": dict(
         title="Where is there room for another walk-in chiropractic clinic?",
         short="The Joint white space",
-        brand="The Joint Chiropractic",
+        brand="The Joint Chiropractic", own_file="the-joint.json",
         concept="walk-in, membership chiropractic",
         radius_mi=3,
         own=lambda p: p.lbrand.eq("the joint chiropractic") | (p.lname.str.match(r"the joint( chiropractic|\s*\.\.\.|$)") & (p.tax.eq("chiropractic") | p.basic_category.eq("complementary_and_alternative_medicine"))),
@@ -74,5 +76,27 @@ BRANDS = {
         counties=["04013", "04021"], area_text="Maricopa and Pinal counties, Arizona",
         fields=[("Adults 25–64 within 3 mi", "a2564_r", 100), ("Households $150K+ within 3 mi", "hh150_r", 100), ("Adults with a bachelor's degree", "ba_pct", 1)],
         home=dict(longitude=-111.95, latitude=33.47, zoom=9.2), spacing_km=6,
+    ),
+    "eegees": dict(
+        title="Where is eegee's full, and where is there room to grow?",
+        short="eegee's white space",
+        brand="eegee's",
+        concept="quick-service sandwich and frozen-drink drive-thru",
+        radius_mi=2,
+        places="qsr2places", own_file="eegees.json", health=True,
+        own=lambda p: p.lname.str.match(r"eegee") & ~p.lname.str.contains(r"factory|office|commissary|catering"),
+        comp=lambda p: (p.lname + " " + p.lbrand).str.contains(SUBS + r"|sonic drive|bahama buck|dutch bros") & ~p.lname.str.match(r"eegee"),
+        comp_label="Sonic, Dutch Bros, Bahama Buck's, Subway, Jersey Mike's, Jimmy John's, Firehouse Subs and other sub chains", comp_dedupe_m=120,
+        comp_short="rival quick-service stores",
+        demand={"pop_r": 0.40, "a2564_r": 0.15, "places": 0.20, "road_km": 0.25},
+        demand_text="people within 2 mi (40%), adults aged 25 to 64 within 2 mi (15%), shops and services in the hex (20%), arterial road in the hex (25%)",
+        w_comp=0.05, w_own=1.0,
+        min_market=("pop_r", 20000), min_text="20,000+ people within 2 miles",
+        white=lambda d: d.comp_r / (d.pop_r / 10000) <= 2.0, white_text="no eegee's within 2 miles and at most 2 rival stores per 10,000 residents",
+        contested_text="no eegee's within 2 miles, but more than 2 rival stores per 10,000 residents",
+        counties=["04013", "04019", "04021"], area_text="Pima, Pinal and Maricopa counties, Arizona",
+        fields=[("People within 2 mi", "pop_r", 100), ("Adults 25–64 within 2 mi", "a2564_r", 100), ("Places in hex", "places", 1)],
+        home=dict(longitude=-111.55, latitude=32.95, zoom=7.9), spacing_km=6,
+        metros=[["Tucson", -110.93, 32.25, 10.4], ["Phoenix", -112.0, 33.48, 9.7], ["East Valley", -111.75, 33.36, 10.6], ["West Valley", -112.3, 33.55, 10.6], ["Casa Grande", -111.75, 32.88, 11]],
     ),
 }

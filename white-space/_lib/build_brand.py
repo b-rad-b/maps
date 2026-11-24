@@ -73,6 +73,11 @@ def dedupe(d, m=60, same_brand=False):
     return d.drop(index=list(drop))
 own = dedupe(p_all[B["own"](p_all)].copy(), 250, True)
 comp = dedupe(p[B["comp"](p) & ~B["own"](p)].copy(), B.get("comp_dedupe_m", 60))   # name-prefix match keeps different brands apart
+if B.get("own_file"):                        # the brand's own store locator replaces the open-data list inside the four states
+    off = pd.DataFrame(json.loads((Path(__file__).parent / "stores" / B["own_file"]).read_text()))
+    off["name"] = B["brand"]; off["lname"] = B["brand"].lower()
+    out4 = (own.lon > -103.0) | ((own.lat > 37) & (own.lon > -114.05)) | ((own.lat < 32.0) & (own.lon > -106.65) ) | (own.lat > 42)
+    own = pd.concat([off[["name", "lname", "lat", "lon"]], own[out4]], ignore_index=True)
 if "own_extra" in B:
     own = pd.concat([own, pd.DataFrame(B["own_extra"])], ignore_index=True)
 
@@ -151,16 +156,41 @@ if xr.exists():
 (S / f"top_{slug}.json").write_text(json.dumps(picked, indent=1))
 for q in picked: print(" ", q["label"], q.get("at", ""), q["score"], q["vals"], "comp", q["comp"])
 
+rnd = lambda x, f: int(round(x / f) * f)
+# --- store by store (optional): each own store's trade area, rivals in it, and how much of it sister stores also reach
+health = None
+if B.get("health"):
+    hs = pd.DataFrame(json.loads((HERE / "stores" / B["own_file"]).read_text()))
+    at = cKDTree(xyz(alat, alon)); popv = acs["pop"].fillna(0).to_numpy()
+    sx = xyz(hs.lat, hs.lon)
+    reach = [set(x) for x in at.query_ball_point(sx, chord(R))]
+    ctree = cKDTree(xyz(comp.lat, comp.lon)); stree = cKDTree(sx)
+    health = []
+    for i, r in hs.iterrows():
+        pop = popv[list(reach[i])].sum()
+        sis = [j for j in stree.query_ball_point(sx[i], chord(2 * R)) if j != i]
+        shared = set().union(*[reach[j] for j in sis]) & reach[i] if sis else set()
+        dd, _ = stree.query(sx[i], k=2)
+        health.append({"name": r["name"], "area": r["area"], "lat": round(r.lat, 5), "lon": round(r.lon, 5), "pop": rnd(pop, 100),
+                       "comp": len(ctree.query_ball_point(sx[i], chord(R))),
+                       "sister_mi": round(2 * math.asin(dd[1] / 2) * R_EARTH / MI, 1),
+                       "shared_pct": int(round(100 * popv[list(shared)].sum() / max(pop, 1)))})
+    for q in health: q["per10k"] = round(q["comp"] / max(q["pop"], 1) * 10000, 1)
+    health.sort(key=lambda q: (-q["shared_pct"], -q["per10k"]))
+    for q in health: print("  store", q)
+
 # --- page data
 clist = sorted(d.county.unique()); cidx = {g: i for i, g in enumerate(clist)}
 cnames = [f"{counties.loc[g, 'NAME']} County, {ST[counties.loc[g, 'STATEFP']]}".replace("Carson City County", "Carson City") for g in clist]
-rnd = lambda x, f: int(round(x / f) * f)
 cells = [[r.h3, float(r.score), int(r.cls), cidx[r.county], int(r.own_r), int(r.comp_r), int(round(r.road_km * 10))]
          + [rnd(getattr(r, f[1]), f[2]) for f in B["fields"]] for r in d.itertuples()]
 # stores inside (or within the radius of) the mapped area
 lat0, lat1, lon0, lon1 = d.lat.min() - .1, d.lat.max() + .1, d.lon.min() - .1, d.lon.max() + .1
-inb = lambda s: s[(s.lat.between(lat0, lat1)) & (s.lon.between(lon0, lon1))]
-stores = [[round(r.lon, 5), round(r.lat, 5), 1, r.name] for r in inb(own).itertuples()] + \
+def inb(s):
+    s = s[(s.lat.between(lat0, lat1)) & (s.lon.between(lon0, lon1))]
+    if B["counties"] or not len(s): return s      # local study: keep the stores just outside the counties too
+    return s[[county_of(h3.latlng_to_cell(a, o, 8)) is not None for a, o in zip(s.lat, s.lon)]]   # regional: stores inside the study area
+stores = [[round(r.lon, 5), round(r.lat, 5), 1, r.name] for r in (own if B.get("health") else inb(own)).itertuples()] + \
          [[round(r.lon, 5), round(r.lat, 5), 0, r.name] for r in inb(comp).itertuples()]
 names = sorted({s[3] for s in stores}); ni = {x: i for i, x in enumerate(names)}
 for s in stores: s[3] = ni[s[3]]
@@ -172,11 +202,11 @@ elif B["counties"]:
     metros = [["Scottsdale", -111.9, 33.58, 10.8], ["East Valley", -111.75, 33.36, 10.6], ["West Valley", -112.3, 33.55, 10.6],
               ["North Phoenix", -112.07, 33.68, 10.8], ["Central Phoenix", -112.05, 33.49, 11]]
 meta = {k: B[k] for k in ["title", "short", "brand", "concept", "comp_label", "comp_short", "demand_text", "min_text", "white_text", "contested_text", "area_text", "home"]}
-meta.update(radius_mi=B["radius_mi"], n=n, n_own=len(inb(own)), n_comp=len(inb(comp)), fields=[f[0] for f in B["fields"]],
+meta.update(radius_mi=B["radius_mi"], n=n, n_own=len((own if B.get("health") else inb(own))), n_comp=len(inb(comp)), fields=[f[0] for f in B["fields"]],
             field_keys=[f[1] for f in B["fields"]], field_pct=[f[1].endswith("_pct") for f in B["fields"]], metros=metros, local=bool(B["counties"]),
-            w_comp=B["w_comp"], w_own=B["w_own"])
+            w_comp=B["w_comp"], w_own=B["w_own"], health_view=bool(B.get("health")), official="24 November 2026" if B.get("own_file") else None)
 (OUT / slug).mkdir(parents=True, exist_ok=True)
-(OUT / slug / "data.js").write_text("window.WS=" + json.dumps({"meta": meta, "cells": cells, "counties": cnames, "stores": stores, "names": names, "top": picked},
+(OUT / slug / "data.js").write_text("window.WS=" + json.dumps({"meta": meta, "cells": cells, "counties": cnames, "stores": stores, "names": names, "top": picked, **({"health": health} if health else {})},
                                                                separators=(",", ":"), ensure_ascii=False) + ";\n")
 html = (HERE / "page.html").read_text().replace("{{TITLE}}", B["short"]).replace("{{DESC}}", f"{B['title']} An independent public-data study of {B['area_text']}: Overture Maps and Census data scored into H3 hexagons with Wherobots (Apache Sedona) and drawn in 3D with deck.gl. Not affiliated with {B['brand']}.")
 (OUT / slug / "index.html").write_text(html)
