@@ -126,7 +126,7 @@ $('header .sub').textContent = `${C.subtitle} · the places we frequented, ${C.y
 $('#about .body').innerHTML = `
   <p>This block is our <b>home range</b> in ${esc(C.subtitle.split(',')[0])}: the area that holds 95% of our Foursquare Swarm check-ins from ${esc(C.years)},
   found with the same kernel density method wildlife biologists use for collared animals (fixed Gaussian kernel, ${esc(C.method.h)} m bandwidth).
-  The pins are the public places inside it, sized by how often we went. Exact dates, visit counts and anywhere private are left out.</p>
+  The pins are the public places inside it, sized by how often we went.${C.worn ? ' The faint rust lines are our Strava runs and walks, drawn together so the routes we repeated wear in darker; both ends of every track are trimmed.' : ''} Exact dates, visit counts and anywhere private are left out.</p>
   <p><b>Sources:</b> ${C.sources.map(esc).join('; ')}.</p>
   <p><b>Projection:</b> ${esc(C.utm)}, local metres. <b>Heights</b> raised ${D.ex}× so gentle hills read. The scale bar is true at the centre of the view.</p>
   <p><b>Map:</b> Pensador Solutions, ${esc(C.built)}. Built with three.js.</p>`;
@@ -144,6 +144,7 @@ $('#legend .body').innerHTML =
    <div class="row"><span class="sw" style="background:#9db8c8"></span>Rivers and ponds</div>
    <div class="row"><span class="sw" style="background:#cfc2a6"></span>Buildings</div>
    <div class="row"><span class="sw" style="background:repeating-linear-gradient(90deg,#5d5548 0 6px,#f4efe2 6px 12px)"></span>Railway</div>
+   ${C.worn ? '<div class="row"><span class="sw" style="background:linear-gradient(90deg,transparent 0 3px,#a4573a 3px 7px,transparent 7px 9px,#7a2e0e 9px 13px,transparent 13px)"></span>Our running and walking routes</div>' : ''}
    <div class="row"><span class="sw" style="background:#a08560"></span>Edge of our home range</div>
    <div class="sep"></div><button id="aboutBtn">About this map</button>`;
 if (innerWidth <= 700) $('#legend').classList.add('min');
