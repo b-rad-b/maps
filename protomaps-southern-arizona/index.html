@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Southern Arizona, one file · Protomaps · Pensador Solutions</title>
+<meta name="description" content="A full vector basemap of southern Arizona served from a single 31 MB PMTiles file on GitHub Pages, with no map service, API key or usage fees.">
+<link rel="stylesheet" href="vendor/maplibre-gl.css">
+<style>
+@font-face{font-family:"Lato";src:url("../fonts/Lato-Regular.ttf") format("truetype");font-weight:400}
+@font-face{font-family:"Lato";src:url("../fonts/Lato-Black.ttf") format("truetype");font-weight:900}
+:root{--ink:#2b2b2b;--muted:#5f5f5a;--line:#d9d6cc;--paper:rgba(255,255,255,.94);--route:#1d3f6e;--hot:#e66100}
+body.dark{--ink:#ecebe6;--muted:#b4b2aa;--line:#44443f;--paper:rgba(32,32,30,.94);--route:#8fb4e8;--hot:#ff8a3d}
+*{box-sizing:border-box}
+html,body{margin:0;height:100%;font-family:"Lato","Segoe UI",system-ui,sans-serif;color:var(--ink)}
+#map{position:fixed;inset:0}
+.panel{position:fixed;background:var(--paper);border:1px solid var(--line);border-radius:6px;box-shadow:0 2px 12px rgba(0,0,0,.14);z-index:5}
+#head{top:12px;left:12px;width:340px;max-width:calc(100% - 24px);padding:12px 14px}
+.kicker{font-size:11px;letter-spacing:.09em;text-transform:uppercase;font-weight:900;color:var(--hot)}
+.kicker a{color:inherit}
+h1{font-size:22px;font-weight:900;line-height:1.1;margin:4px 0 6px}
+#head p{font-size:13.5px;line-height:1.45;color:var(--muted);margin:0 0 8px}
+.styles{display:flex;gap:6px;flex-wrap:wrap}
+.styles button{font:inherit;font-size:12.5px;font-weight:900;padding:6px 10px;border:1px solid var(--line);border-radius:99px;background:transparent;color:var(--ink);cursor:pointer}
+.styles button[aria-pressed="true"]{background:var(--route);border-color:var(--route);color:#fff}
+body.dark .styles button[aria-pressed="true"]{color:#14213a}
+#meter{margin-top:10px;border-top:1px solid var(--line);padding-top:8px;font-size:12.5px;line-height:1.5;color:var(--muted)}
+#meter b{color:var(--ink);font-variant-numeric:tabular-nums}
+#legend{left:12px;bottom:42px;width:220px;padding:10px 12px;font-size:12.5px}
+#legend h2{font-size:11px;letter-spacing:.09em;text-transform:uppercase;font-weight:900;color:var(--muted);margin:0 0 6px;cursor:pointer}
+#legend .row{display:flex;align-items:center;gap:8px;margin:3px 0}
+.sw{width:22px;height:10px;flex:none;border:1px solid rgba(0,0,0,.2)}
+.ln{width:22px;height:0;flex:none;border-top:3px solid var(--route)}
+.ln.alt{border-top-style:dashed;border-top-width:2px}
+#legend .src{border-top:1px solid var(--line);margin-top:7px;padding-top:7px;font-size:11.5px;line-height:1.4;color:var(--muted)}
+#north{position:fixed;right:14px;top:112px;width:40px;height:40px;z-index:5;pointer-events:none}
+.maplibregl-ctrl-scale{font-family:inherit}
+@media (max-width:700px){
+  #head{left:8px;right:8px;top:8px;width:auto;padding:10px 12px}
+  #head p.lede{display:none}
+  h1{font-size:19px}
+  #legend{left:8px;bottom:72px;width:200px}
+  #legend.min .body{display:none}
+  #north{top:auto;bottom:120px;right:10px}
+}
+</style>
+</head>
+<body>
+<div id="map" role="application" aria-label="Vector basemap of southern Arizona with the Arizona Trail"></div>
+<header id="head" class="panel">
+  <div class="kicker"><a href="../">Web GIS portfolio</a> · Protomaps</div>
+  <h1>Southern Arizona, one file</h1>
+  <p class="lede">Every street, wash, trail and place name from Nogales to Tucson lives in a single 31 MB file sitting next to this page. There is no map service, no API key and no bill. Your browser asks for only the bytes it needs.</p>
+  <div class="styles" role="group" aria-label="Map style">
+    <button data-s="notebook" aria-pressed="true">Field notebook</button>
+    <button data-s="light" aria-pressed="false">Light</button>
+    <button data-s="dark" aria-pressed="false">Dark</button>
+  </div>
+  <div id="meter" aria-live="polite">Fetched so far: <b id="kb">0 KB</b> in <b id="rq">0</b> requests, <b id="pct">0.0%</b> of the file.</div>
+</header>
+<aside id="legend" class="panel">
+  <h2>Legend and sources</h2>
+  <div class="body">
+    <div class="row"><span class="ln"></span>Arizona Trail, border to Vail</div>
+    <div class="row"><span class="ln alt"></span>Alternate route</div>
+    <div class="row"><span class="sw" id="sw-road"></span>Highways and streets</div>
+    <div class="row"><span class="sw" id="sw-water"></span>Water and washes</div>
+    <div class="row"><span class="sw" id="sw-park"></span>Parks and forest</div>
+    <div class="row"><span class="sw" id="sw-bldg"></span>Buildings (zoom in)</div>
+    <div class="src"><b>Basemap:</b> Protomaps daily build, 24 November 2026, © OpenStreetMap contributors, Natural Earth. <b>Trail:</b> Arizona Trail Association. <b>Projection:</b> Web Mercator. Map by Pensador Solutions, November 2026. Not for navigation.</div>
+  </div>
+</aside>
+<svg id="north" viewBox="-50 -50 100 100" aria-label="North arrow"><g id="rose"><circle r="34" fill="rgba(255,255,255,.85)" stroke="#333" stroke-width="2"/><path d="M0 -28 L9 6 L0 0 L-9 6Z" fill="#333"/><text y="26" text-anchor="middle" font-size="17" font-weight="900" font-family="Lato,sans-serif" fill="#333">N</text></g></svg>
+<script src="vendor/maplibre-gl.js"></script>
+<script src="vendor/pmtiles.js"></script>
+<script src="vendor/basemaps.js"></script>
+<script>
+const FILE_BYTES = 31095111;
+const here = new URL('.', location.href).href;
+const protocol = new pmtiles.Protocol();
+maplibregl.addProtocol('pmtiles', protocol.tile);
+
+// "Field notebook": a warm paper flavor built on the light one, tuned to match the rest of the portfolio
+const L = basemaps.namedFlavor('light');
+const notebook = Object.assign({}, L, {
+  background: '#efe8d6', earth: '#efe8d6', water: '#a9c3cf', park_a: '#cdd6ae', park_b: '#c3cfa2', wood_a: '#c9d3ab', wood_b: '#bfcb9f',
+  scrub_a: '#dcd9b8', scrub_b: '#d5d3ae', sand: '#e9dfc4', glacier: '#f4f1e8', buildings: '#d5c8ab', hospital: '#ead9cf', school: '#e6dcc0',
+  industrial: '#e0d8c6', aerodrome: '#e2dccb', pedestrian: '#e8e0cb', zoo: '#d3d9b4', military: '#ddd6c6', beach: '#eadfbd',
+  minor_a: '#fbf7ec', minor_b: '#fbf7ec', minor_casing: '#c2b596', minor_service: '#f4eedf', minor_service_casing: '#cfc4a8',
+  major: '#f5e6bb', major_casing_early: '#b5a47d', major_casing_late: '#b5a47d', highway: '#eecf8c', highway_casing_early: '#a58f5f', highway_casing_late: '#a58f5f',
+  link: '#f5e6bb', link_casing: '#b5a47d', other: '#efe6d0', railway: '#8d8372', boundaries: '#7c7260',
+  roads_label_minor: '#6b6252', roads_label_minor_halo: '#efe8d6', roads_label_major: '#5a5142', roads_label_major_halo: '#efe8d6',
+  city_label: '#3b3328', city_label_halo: '#efe8d6', state_label: '#8b806b', state_label_halo: '#efe8d6', country_label: '#6b6252',
+  subplace_label: '#6b6252', subplace_label_halo: '#efe8d6', ocean_label: '#4f7286', address_label: '#8b806b', address_label_halo: '#efe8d6',
+});
+let current = 'notebook', trail = null;
+const FLAVORS = { notebook: { f: notebook, sprite: 'light' }, light: { f: L, sprite: 'light' }, dark: { f: basemaps.namedFlavor('dark'), sprite: 'dark' } };
+
+function style(name) {
+  const { f, sprite } = FLAVORS[name];
+  const route = name === 'dark' ? '#8fb4e8' : '#1d3f6e', halo = name === 'dark' ? '#14213a' : '#ffffff';
+  const main = ['!', ['get', 'alt']], alt = ['get', 'alt'];
+  const over = trail ? [
+    { id: 'azt-c', type: 'line', source: 'azt', filter: main, layout: { 'line-cap': 'round', 'line-join': 'round' }, paint: { 'line-color': halo, 'line-width': 6, 'line-opacity': .85 } },
+    { id: 'azt', type: 'line', source: 'azt', filter: main, layout: { 'line-cap': 'round', 'line-join': 'round' }, paint: { 'line-color': route, 'line-width': 3.2 } },
+    { id: 'azt-alt', type: 'line', source: 'azt', filter: alt, paint: { 'line-color': route, 'line-width': 2.2, 'line-dasharray': [2, 1.5] } }] : [];
+  return {
+    version: 8,
+    glyphs: here + 'fonts/{fontstack}/{range}.pbf',
+    sprite: here + 'sprites/' + sprite,
+    sources: { protomaps: { type: 'vector', url: 'pmtiles://' + here + 'southern-arizona.pmtiles', attribution: '<a href="https://protomaps.com">Protomaps</a> © <a href="https://openstreetmap.org/copyright">OpenStreetMap</a>' },
+      ...(trail ? { azt: { type: 'geojson', data: trail } } : {}) },
+    layers: basemaps.layers('protomaps', f, { lang: 'en' }).concat(over),
+  };
+}
+
+const map = new maplibregl.Map({ container: 'map', style: style('notebook'), attributionControl: false, hash: true,
+  bounds: [[-111.05, 31.3], [-110.3, 32.12]], fitBoundsOptions: { padding: { top: 150, bottom: 40, left: 30, right: 30 } },
+  maxBounds: [[-111.9, 30.8], [-109.5, 32.7]], minZoom: 7, maxZoom: 17 });
+map.addControl(new maplibregl.NavigationControl({ visualizePitch: false }), 'top-right');
+map.addControl(new maplibregl.ScaleControl({ maxWidth: 130, unit: 'imperial' }), 'bottom-left');
+map.addControl(new maplibregl.ScaleControl({ maxWidth: 130, unit: 'metric' }), 'bottom-left');
+map.addControl(new maplibregl.AttributionControl({ compact: true, customAttribution: 'Pensador Solutions · Arizona Trail Association' }), 'bottom-right');
+map.on('rotate', () => document.getElementById('rose').setAttribute('transform', `rotate(${-map.getBearing()})`));
+
+fetch('azt.geojson').then((r) => r.json()).then((j) => { trail = j; map.setStyle(style(current)); });
+
+function swatches() {
+  const f = FLAVORS[current].f;
+  document.getElementById('sw-road').style.background = `linear-gradient(90deg, ${f.highway} 50%, ${f.minor_a} 50%)`;
+  document.getElementById('sw-water').style.background = f.water;
+  document.getElementById('sw-park').style.background = `linear-gradient(90deg, ${f.park_b} 50%, ${f.wood_b} 50%)`;
+  document.getElementById('sw-bldg').style.background = f.buildings;
+}
+swatches();
+document.querySelectorAll('.styles button').forEach((b) => b.addEventListener('click', () => {
+  current = b.dataset.s;
+  document.querySelectorAll('.styles button').forEach((x) => x.setAttribute('aria-pressed', String(x === b)));
+  document.body.classList.toggle('dark', current === 'dark');
+  map.setStyle(style(current)); swatches();
+}));
+
+// live meter: how much of the single file this visit has actually pulled
+let bytes = 0, reqs = 0;
+function meter(list) {
+  for (const e of list.getEntries()) {
+    if (!e.name.includes('southern-arizona.pmtiles')) continue;
+    reqs++; bytes += e.transferSize || e.encodedBodySize || 0;
+  }
+  document.getElementById('kb').textContent = bytes >= 1048576 ? (bytes / 1048576).toFixed(1) + ' MB' : Math.round(bytes / 1024) + ' KB';
+  document.getElementById('rq').textContent = reqs;
+  document.getElementById('pct').textContent = (100 * bytes / FILE_BYTES).toFixed(1) + '%';
+}
+try { new PerformanceObserver(meter).observe({ type: 'resource', buffered: true }); } catch (e) { document.getElementById('meter').hidden = true; }
+
+const lg = document.getElementById('legend');
+if (innerWidth <= 700) lg.classList.add('min');
+lg.querySelector('h2').addEventListener('click', () => lg.classList.toggle('min'));
+window.__map = map;
+</script>
+</body>
+</html>
