@@ -1,0 +1,5 @@
+pmtiles.js (PMTiles 4.5.0) and basemaps.js (@protomaps/basemaps 5.7.2): BSD 3-Clause License, Copyright Protomaps LLC. https://github.com/protomaps
+MapLibre GL JS: see MAPLIBRE-LICENSE.txt.
+Fonts (Noto Sans glyph ranges): SIL Open Font License 1.1, via protomaps/basemaps-assets.
+Sprites: protomaps/basemaps-assets.
+Tiles: Protomaps basemap daily build 2026-11-24, © OpenStreetMap contributors (ODbL), Natural Earth.

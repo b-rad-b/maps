@@ -9,6 +9,7 @@ One real question per web GIS platform. Live at https://b-rad-b.github.io/maps/
 | `home-ranges/ealing/` | three.js | Live |
 | `home-ranges/` | three.js + Python pipeline (home-range atlas, 49 places) | Live |
 | `home-ranges/rita-ranch/` | three.js (public-data neighborhood map) | Live |
+| `protomaps-southern-arizona/` | Protomaps / PMTiles + MapLibre GL JS (self-hosted basemap, no key) | Live |
 | `coffee-white-space/` | Wherobots (Apache Sedona) + deck.gl | Live |
 | `white-space/optimyze/`, `the-joint/`, `sprouts/` | Wherobots + deck.gl (brand recipes) | Live |
 | Drive-thru coffee site selection | CARTO Builder | Building |
