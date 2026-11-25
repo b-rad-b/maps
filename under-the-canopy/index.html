@@ -1,0 +1,253 @@
+<meta charset="utf-8">
+<title>Under the Canopy · Lidar story map · Pensador Solutions</title>
+<meta name="description" content="A scroll story about finding a Maya site in open lidar, and then finding it in the literature. Location withheld.">
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans+Condensed:wght@500;700&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap">
+<style>
+/* Layout: a field survey notebook. Chapters scroll on the left; one sticky 3D lidar block on the right changes with them. */
+:root{
+  --bg:#eef0ea; --panel:#f8f9f5; --ink:#1f2a24; --muted:#56635b; --rule:#c9d0c6; --accent:#9a4a12; --pin:#e69f00;
+  --display:"IBM Plex Sans Condensed","Arial Narrow",system-ui,sans-serif;
+  --body:"Source Serif 4",Georgia,serif;
+  --mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#141a17;--panel:#1c2420;--ink:#e3e8e1;--muted:#9faea4;--rule:#33403a;--accent:#f0a35e;--pin:#f2b43c;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#141a17;--panel:#1c2420;--ink:#e3e8e1;--muted:#9faea4;--rule:#33403a;--accent:#f0a35e;--pin:#f2b43c;color-scheme:dark}
+*{box-sizing:border-box}
+html,body{height:100%}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:17px;line-height:1.55;margin:0}
+.wrap{display:grid;grid-template-columns:minmax(0,460px) minmax(0,1fr);min-height:100%}
+.story{order:-1}
+#labels{position:absolute;inset:0;overflow:hidden;pointer-events:none}
+.story{padding-block:0 30vh;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:28px;border-right:1px solid var(--rule)}
+.stage{position:sticky;top:0;height:100vh;height:100dvh;min-width:0}
+#gl{position:absolute;inset:0}
+header.intro{padding-block:56px 24px}
+.eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--accent)}
+h1{font-family:var(--display);font-weight:700;font-size:clamp(34px,5vw,52px);line-height:1;margin:10px 0 14px;text-wrap:balance}
+.dek{color:var(--muted);font-size:18px;margin:0}
+.withheld{margin-top:18px;font-family:var(--mono);font-size:12.5px;border:1px solid var(--rule);padding:8px 10px;color:var(--muted)}
+section.ch{min-height:78vh;padding-block:12vh 4vh;border-top:1px solid var(--rule)}
+section.ch:first-of-type{border-top:0}
+.step{font-family:var(--mono);font-size:12px;color:var(--accent);letter-spacing:.06em}
+h2{font-family:var(--display);font-weight:700;font-size:28px;line-height:1.1;margin:6px 0 12px;text-wrap:balance}
+p{margin:0 0 12px;max-width:62ch}
+.fact{font-family:var(--mono);font-size:13px;color:var(--muted)}
+ol.feats{padding-left:0;list-style:none;margin:12px 0;display:grid;gap:6px}
+ol.feats li{display:flex;gap:10px;align-items:baseline}
+ol.feats b{font-family:var(--mono);min-width:22px;height:22px;border-radius:50%;background:var(--pin);color:#1f1a10;display:inline-grid;place-items:center;font-size:12px}
+.plan-slot{border:1px dashed var(--rule);padding:14px;font-size:15px;color:var(--muted);margin:10px 0;background:var(--panel)}
+cite{font-style:italic}
+footer.credits{border-top:1px solid var(--rule);padding-block:24px;font-size:14px;color:var(--muted)}
+footer.credits h3{font-family:var(--display);font-size:16px;margin:0 0 6px;color:var(--ink)}
+/* map furniture on the stage */
+.hud{position:absolute;background:color-mix(in srgb,var(--panel) 92%,transparent);border:1px solid var(--rule);font-family:var(--mono);font-size:12px;color:var(--ink)}
+#legend{left:16px;bottom:16px;padding:10px 12px;min-width:210px;max-width:calc(100% - 140px)}
+#legend .t{font-family:var(--display);font-weight:700;font-size:14px;margin-bottom:6px}
+#legend .ramp{height:10px;border:1px solid var(--rule)}
+#legend .ends{display:flex;justify-content:space-between;margin-top:3px;color:var(--muted)}
+#legend .note{margin-top:6px;color:var(--muted);max-width:30ch}
+#north{right:16px;top:16px;width:52px;height:52px;padding:4px;border-radius:50%}
+#scale{right:16px;bottom:16px;padding:6px 8px;text-align:right}
+#scale .bar{height:6px;border:1.5px solid var(--ink);border-top:0;margin:3px 0 2px auto;background:linear-gradient(90deg,var(--ink) 50%,transparent 50%)}
+#scale small{display:block;color:var(--muted)}
+.fl{font-family:var(--mono);font-size:12px;display:flex;align-items:center;gap:6px;pointer-events:none;white-space:nowrap;transform:translate(-11px,-50%)}
+.fl b{width:22px;height:22px;border-radius:50%;background:var(--pin);color:#1f1a10;display:grid;place-items:center;border:2px solid #fff;box-shadow:0 1px 4px rgba(0,0,0,.35)}
+.fl span{background:color-mix(in srgb,var(--panel) 88%,transparent);padding:1px 5px;border:1px solid var(--rule)}
+.fl.off{display:none}
+a{color:var(--accent)}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+@media (max-width:820px){
+  .wrap{display:block}
+  .stage{height:52vh;height:52dvh;z-index:2;border-bottom:1px solid var(--rule)}
+  .story{border-right:0;padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:0 40vh}
+  section.ch{min-height:60vh;padding-block:6vh 4vh}
+  #legend{min-width:0;font-size:11px}
+  .fl span{display:none}
+  #legend .note{display:none}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+
+<div class="wrap">
+  <div class="stage" aria-label="3D lidar view of the site">
+    <div id="gl"></div>
+    <div id="labels"></div>
+    <div class="hud" id="north" aria-label="North arrow"></div>
+    <div class="hud" id="legend" aria-live="polite"></div>
+    <div class="hud" id="scale"></div>
+  </div>
+
+  <main class="story">
+    <header class="intro">
+      <div class="eyebrow">Lidar case study · Pensador Solutions</div>
+      <h1>Under the Canopy</h1>
+      <p class="dek">How airborne lidar shows a Maya town through the forest, and how I checked whether it was a new find. It wasn't, and that check is the point of this story.</p>
+      <div class="withheld">Location withheld. Coordinates, basemap and roads are left out on purpose, as for every archaeological site I map. The view is a local grid, a strip of lidar about 300 m wide, with north up. Region: the Puuc–Chenes hills of Campeche, Mexico.</div>
+    </header>
+
+    <section class="ch" data-state="forest">
+      <div class="step">Step 1 of 6 · The forest</div>
+      <h2>From the air it is all trees</h2>
+      <p>This is the top of the forest as the lidar saw it in 2013: every return that bounced off a leaf or branch. Canopy here reaches about 17 m. A photograph from above would show the same thing, a continuous green surface.</p>
+      <p class="fact">Data: NASA G-LiHT airborne lidar, 2013, 1 m grid.</p>
+    </section>
+
+    <section class="ch" data-state="bare">
+      <div class="step">Step 2 of 6 · Bare earth</div>
+      <h2>Take the trees away</h2>
+      <p>Some laser pulses slip through gaps in the leaves and reach the ground. Keep only those, interpolate between them, and you get a bare-earth terrain model. Lit from the northwest, a leveled hilltop appears, standing about 45 m above the lower ground, with straight-edged shapes on top.</p>
+      <p class="fact">Same block, same scale. Heights raised 1.5× so the shapes read.</p>
+    </section>
+
+    <section class="ch" data-state="relief">
+      <div class="step">Step 3 of 6 · Local relief</div>
+      <h2>Subtract the hill to see what sits on it</h2>
+      <p>A local relief model removes the broad shape of the hill and keeps only what rises above or dips below its surroundings within about 30 m. Long mounds of collapsed masonry turn orange, and courtyards and pits turn purple. The pattern is rectangular courtyards, which nature does not make.</p>
+    </section>
+
+    <section class="ch" data-state="sky">
+      <div class="step">Step 4 of 6 · Sky-view factor</div>
+      <h2>Measure how much sky each spot can see</h2>
+      <p>Sky-view factor asks, for every square metre, how open the sky is around it. Ridges and mound tops are bright, while pits and the bases of walls are dark. It needs no light direction, so edges facing any way show equally. Several dozen small dark pits, 2 to 4 m across, are probably <i>chultunes</i>, underground cisterns.</p>
+    </section>
+
+    <section class="ch" data-state="features">
+      <div class="step">Step 5 of 6 · Reading the shapes</div>
+      <h2>Six features read from the lidar</h2>
+      <ol class="feats">
+        <li><b>1</b>A tall building on the west side of the main courtyard</li>
+        <li><b>2</b>The main quadrangle, long mounds around a courtyard</li>
+        <li><b>3</b>A south quadrangle</li>
+        <li><b>4</b>A northwest group</li>
+        <li><b>5</b>A round structure about 20 m across</li>
+        <li><b>6</b>Terraces on the southeast slope</li>
+      </ol>
+      <p class="fact">Positions are approximate, read from the lidar only, and not checked on the ground.</p>
+    </section>
+
+    <section class="ch" data-state="check">
+      <div class="step">Step 6 of 6 · The check</div>
+      <h2>Was it already known? Yes: this is Pixoy</h2>
+      <p>The site was missing from the digital site atlas at this spot, and that gap was tempting. But the atlas point for many Chenes sites is off by kilometres. So before telling anyone, I went to the published record.</p>
+      <p>E. Wyllys Andrews V's 1984 survey describes a hilltop site in the same stretch of hill country as this lidar group. Eric von Euw drew its plan in 1977 for the <cite>Corpus of Maya Hieroglyphic Inscriptions</cite>. His plan matches the lidar building for building, down to the round structure, his Structure 17.</p>
+      <div class="plan-slot">Von Euw's 1977 plan of Pixoy goes here once the Peabody Museum gives permission to show it. Until then: <cite>Corpus of Maya Hieroglyphic Inscriptions</cite>, vol. 4, part 1, Pixoy.</div>
+      <p><b>The lesson:</b> lidar is very good at showing that something is there, and very bad at telling you whether anyone found it first. Every candidate now gets a literature check (Andrews' reports, the Corpus, regional surveys) before it is called new. I withdrew this one from the list of possible discoveries the same day.</p>
+    </section>
+
+    <footer class="credits">
+      <h3>About this map</h3>
+      <p><b>Data:</b> NASA Goddard G-LiHT airborne lidar (2013): canopy height, bare-earth terrain, local relief (≈30 m window) and sky-view factor at 1 m, built by me from the public point clouds.</p>
+      <p><b>Sources:</b> Andrews, E. W. V (1984), survey of Chenes sites; von Euw, E. (1977), <cite>Corpus of Maya Hieroglyphic Inscriptions</cite> 4(1), Peabody Museum, Harvard.</p>
+      <p><b>Grid:</b> local metres, north up, real coordinates withheld. 3D heights raised 1.5×; the scale bar is true at the centre of the view.</p>
+      <p><b>Colors:</b> canopy in a yellow-green ramp; local relief in a purple-orange ramp that stays readable with red-green color blindness.</p>
+      <p><b>Map and text:</b> Pensador Solutions, Tucson, Arizona, November 2026.</p>
+    </footer>
+  </main>
+</div>
+
+<script type="importmap">{"imports":{"three":"../home-ranges/_lib/three/three.module.js","three/addons/":"../home-ranges/_lib/three/addons/"}}</script>
+<script type="module">
+import * as THREE from 'three';
+import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+
+const D = await (await fetch('data.json')).json();
+const N = D.grid, S = D.size_m, st = D.step_m, EX = 1.5;
+const dec = (b) => new Uint16Array(Uint8Array.from(atob(b), (c) => c.charCodeAt(0)).buffer);
+const dtm = dec(D.dtm), chm = dec(D.chm);
+const mb = Uint8Array.from(atob(D.mask), (c) => c.charCodeAt(0)); const ok = (k) => (mb[k >> 3] >> (7 - (k & 7))) & 1;
+const host = document.getElementById('gl');
+const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
+host.appendChild(renderer.domElement);
+const scene = new THREE.Scene();
+const camera = new THREE.PerspectiveCamera(35, 1, 5, 8000);
+const controls = new OrbitControls(camera, renderer.domElement);
+controls.enableDamping = true; controls.maxPolarAngle = 1.3; controls.minDistance = 250; controls.maxDistance = 2600;
+scene.add(new THREE.HemisphereLight(0xffffff, 0x60584a, 1.7));
+const sun = new THREE.DirectionalLight(0xffffff, 1.3); sun.position.set(-600, 900, -400); scene.add(sun);
+
+// terrain grid (x east, z = -north)
+const BASE = 25;
+const pos = new Float32Array(N * N * 3), uv = new Float32Array(N * N * 2), idx = [];
+const ground = new Float32Array(N * N), top = new Float32Array(N * N);
+for (let j = 0; j < N; j++) for (let i = 0; i < N; i++) {
+  const k = j * N + i;
+  ground[k] = BASE + dtm[k] / 100 * EX; top[k] = ground[k] + chm[k] / 10 * EX;
+  pos[k * 3] = -S / 2 + (i + .5) * st; pos[k * 3 + 2] = -(S / 2 - (j + .5) * st); pos[k * 3 + 1] = top[k];
+  uv[k * 2] = (i + .5) / N; uv[k * 2 + 1] = 1 - (j + .5) / N;
+}
+for (let j = 0; j < N - 1; j++) for (let i = 0; i < N - 1; i++) { const a = j * N + i; if (ok(a) && ok(a + 1) && ok(a + N) && ok(a + N + 1)) idx.push(a, a + N, a + 1, a + 1, a + N, a + N + 1); }
+const g = new THREE.BufferGeometry();
+g.setAttribute('position', new THREE.BufferAttribute(pos, 3)); g.setAttribute('uv', new THREE.BufferAttribute(uv, 2)); g.setIndex(idx); g.computeVertexNormals();
+const loader = new THREE.TextureLoader();
+const T = {}; for (const n of ['forest', 'bare', 'relief', 'sky']) { T[n] = loader.load(`tex_${n}.png`); T[n].colorSpace = THREE.SRGBColorSpace; T[n].anisotropy = 8; }
+const mat = new THREE.MeshLambertMaterial({ map: T.forest });
+scene.add(new THREE.Mesh(g, mat));
+// block sides
+const side = new THREE.MeshLambertMaterial({ color: 0x6b5a45 });
+const edge = (fn) => { const p = []; for (let s = 0; s < N - 1; s++) { const [a, b] = [fn(s), fn(s + 1)]; p.push(a[0], 0, a[1], b[0], 0, b[1], a[0], a[2], a[1], b[0], 0, b[1], b[0], b[2], b[1], a[0], a[2], a[1]); } return p; };
+const hg = (i, j) => ground[j * N + i];
+const xy = (i, j) => [-S / 2 + (i + .5) * st, -(S / 2 - (j + .5) * st)];
+const walls = [...edge((s) => [...xy(s, 0), hg(s, 0)]), ...edge((s) => [...xy(s, N - 1), hg(s, N - 1)]), ...edge((s) => [...xy(0, s), hg(0, s)]), ...edge((s) => [...xy(N - 1, s), hg(N - 1, s)])];
+const wg = new THREE.BufferGeometry(); wg.setAttribute('position', new THREE.Float32BufferAttribute(walls, 3)); wg.computeVertexNormals();
+// walls omitted: the lidar strip has an irregular edge
+
+// feature labels
+const labels = document.getElementById('labels');
+const H = (x, y) => { const i = Math.round((x + S / 2) / st - .5), j = Math.round((S / 2 - y) / st - .5); return ground[Math.max(0, Math.min(N - 1, j)) * N + Math.max(0, Math.min(N - 1, i))]; };
+const feats = D.features.map((f) => { const el = document.createElement('div'); el.className = 'fl off'; el.innerHTML = `<b>${f.id}</b><span>${f.en}</span>`; labels.appendChild(el); return { f, el, v: new THREE.Vector3(f.xy[0], H(f.xy[0], f.xy[1]) + 6, -f.xy[1]) }; });
+
+// chapter states
+const STATES = {
+  forest:   { tex: 'forest', morph: 1, cam: [0, 900, 1050], t: 'Forest canopy height', ramp: 'linear-gradient(90deg,#d9efa6,#78c679,#238443,#004529)', ends: ['0 m', `${Math.round(D.canopy_max)} m`], note: 'Lidar first returns, 2013' },
+  bare:     { tex: 'bare', morph: 0, cam: [-500, 650, 700], t: 'Bare-earth terrain', ramp: 'linear-gradient(90deg,#4a453c,#b9b1a0,#efe9dc)', ends: ['shadow', 'lit'], note: 'Hillshade, light from the northwest' },
+  relief:   { tex: 'relief', morph: 0, cam: [0, 820, 380], t: 'Local relief', ramp: 'linear-gradient(90deg,#2d004b,#8073ac,#f7f7f7,#e08214,#7f3b08)', ends: ['−1 m', '+1 m'], note: 'Height above or below the ≈30 m surroundings' },
+  sky:      { tex: 'sky', morph: 0, cam: [300, 700, 450], t: 'Sky-view factor', ramp: 'linear-gradient(90deg,#0a0a0a,#f5f5f5)', ends: ['enclosed', 'open sky'], note: 'Share of sky visible, 10 m radius' },
+  features: { tex: 'relief', morph: 0, cam: [150, 520, 420], t: 'Features read from the lidar', ramp: 'linear-gradient(90deg,#2d004b,#8073ac,#f7f7f7,#e08214,#7f3b08)', ends: ['−1 m', '+1 m'], note: 'Numbered pins: approximate, not field-checked', pins: true },
+  check:    { tex: 'bare', morph: 0, cam: [-350, 760, 820], t: 'Pixoy, a recorded site', ramp: 'linear-gradient(90deg,#4a453c,#b9b1a0,#efe9dc)', ends: ['shadow', 'lit'], note: 'Matches von Euw 1977, incl. round Str. 17', pins: true },
+};
+let morph = 1, morphTo = 1, camFrom = null, camTo = null, ck = 1;
+function setState(name) {
+  const s = STATES[name]; if (!s) return;
+  mat.map = T[s.tex]; mat.needsUpdate = true; morphTo = s.morph;
+  camFrom = camera.position.clone(); camTo = new THREE.Vector3(...s.cam); ck = 0;
+  feats.forEach((x) => x.el.classList.toggle('off', !s.pins));
+  document.getElementById('legend').innerHTML = `<div class="t">${s.t}</div><div class="ramp" style="background:${s.ramp}"></div><div class="ends"><span>${s.ends[0]}</span><span>${s.ends[1]}</span></div><div class="note">${s.note}</div>`;
+}
+camera.position.set(...STATES.forest.cam); controls.target.set(0, BASE + 20, 0); setState('forest');
+const io = new IntersectionObserver((es) => es.forEach((e) => e.isIntersecting && setState(e.target.dataset.state)), { rootMargin: '-45% 0px -45% 0px' });
+document.querySelectorAll('section.ch').forEach((s) => io.observe(s));
+
+// north arrow + scale bar
+const north = document.getElementById('north');
+north.innerHTML = `<svg viewBox="-24 -24 48 48" width="100%" height="100%"><g id="rose"><path d="M0 -19 L6 6 L0 2 L-6 6Z" fill="currentColor"/><text y="-8" text-anchor="middle" font-size="0" fill="currentColor"></text></g><text x="0" y="21" text-anchor="middle" font-size="9" fill="currentColor" font-family="IBM Plex Mono,monospace">N</text></svg>`;
+const rose = north.querySelector('#rose');
+const nice = [10, 20, 25, 50, 100, 200, 250, 500];
+function hud() {
+  rose.setAttribute('transform', `rotate(${THREE.MathUtils.radToDeg(controls.getAzimuthalAngle())})`);
+  const d = camera.position.distanceTo(controls.target), h = host.clientHeight;
+  const mpp = 2 * d * Math.tan(THREE.MathUtils.degToRad(camera.fov / 2)) / h;
+  const m = nice.filter((n) => n / mpp <= 120).pop() || 10;
+  document.getElementById('scale').innerHTML = `${m} m<div class="bar" style="width:${Math.round(m / mpp)}px"></div><small>at centre · heights ×${EX}</small>`;
+}
+function resize() { const w = host.clientWidth, h = host.clientHeight; renderer.setSize(w, h); camera.aspect = w / h; camera.updateProjectionMatrix(); }
+addEventListener('resize', resize); resize();
+const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+const P = g.attributes.position, v = new THREE.Vector3();
+let n = 0;
+(function tick() {
+  if (Math.abs(morph - morphTo) > 1e-3) {
+    morph += (morphTo - morph) * (reduce ? 1 : 0.08);
+    for (let k = 0; k < N * N; k++) P.array[k * 3 + 1] = ground[k] + (top[k] - ground[k]) * morph;
+    P.needsUpdate = true; g.computeVertexNormals();
+  }
+  if (camTo && ck < 1) { ck = Math.min(1, ck + (reduce ? 1 : 0.03)); const e = 1 - Math.pow(1 - ck, 3); camera.position.lerpVectors(camFrom, camTo, e); }
+  controls.update(); renderer.render(scene, camera);
+  const w = host.clientWidth, h = host.clientHeight;
+  feats.forEach(({ el, v: p }) => { v.copy(p).project(camera); el.style.left = ((v.x + 1) / 2 * w) + 'px'; el.style.top = ((1 - v.y) / 2 * h) + 'px'; el.style.position = 'absolute'; });
+  if (n++ % 6 === 0) hud();
+  requestAnimationFrame(tick);
+})();
+</script>
