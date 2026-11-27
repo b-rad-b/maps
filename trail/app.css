@@ -17,14 +17,14 @@ button{font:inherit;color:inherit}
 .hudrow{display:flex;justify-content:space-between;gap:12px;line-height:1.55}
 .hudrow b{font-variant-numeric:tabular-nums}
 .hudrow.small{font-size:11.5px;color:var(--muted)}
-#fabs{position:fixed;right:10px;bottom:calc(150px + var(--safe-b));display:flex;flex-direction:column;gap:10px;z-index:6}
+#fabs{position:fixed;right:10px;bottom:calc(110px + var(--safe-b));display:flex;flex-direction:column;gap:10px;z-index:6}
 .fab{width:48px;height:48px;border-radius:50%;border:1px solid var(--line);background:var(--solid);box-shadow:0 2px 10px rgba(0,0,0,.2);display:grid;place-items:center;cursor:pointer;color:#333}
 .fab.on{background:var(--accent);color:#fff;border-color:var(--accent)}
 #btn-rec{color:#b00020}
 #btn-rec.on{background:#b00020;color:#fff;border-color:#b00020}
 #btn-rec.on svg circle{animation:pulse 1.4s infinite}
 @keyframes pulse{50%{opacity:.35}}
-#north{position:fixed;right:12px;top:calc(62px + var(--safe-t));width:40px;height:40px;z-index:5;pointer-events:none}
+#north{position:fixed;right:12px;top:calc(62px + var(--safe-t));width:40px;height:40px;z-index:5;cursor:pointer}
 #legend{left:8px;bottom:calc(68px + var(--safe-b));width:250px;max-width:calc(100% - 80px);padding:8px 10px;font-size:12.5px;max-height:55vh;overflow:auto}
 #legend h2{font-size:11px;letter-spacing:.08em;text-transform:uppercase;font-weight:800;color:var(--muted);margin:0;cursor:pointer;display:flex;justify-content:space-between}
 #legend .body{margin-top:6px}
