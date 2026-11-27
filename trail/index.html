@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no">
+<title>Senda · trail map</title>
+<meta name="description" content="Senda: a personal, offline-capable trail map for southern Arizona with a lifetime hike log, desert water planner and AZT mileage.">
+<meta name="theme-color" content="#efe8d6">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="Senda">
+<link rel="apple-touch-icon" href="icon-180.png">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="stylesheet" href="../protomaps-southern-arizona/vendor/maplibre-gl.css">
+<link rel="stylesheet" href="app.css">
+</head>
+<body>
+<div id="map" aria-label="Map"></div>
+
+<header id="top" class="panel">
+  <div class="brand"><b>Senda</b> <span id="sub" data-i18n="subtitle">Southern Arizona trail map</span></div>
+  <div class="topbtns">
+    <span id="netbadge" class="badge" hidden></span>
+    <button id="lang" class="pill" aria-label="Language">ES</button>
+  </div>
+</header>
+
+<div id="hud" class="panel" hidden>
+  <div class="hudrow"><span data-i18n="elev">Elevation</span> <b id="h-elev">–</b></div>
+  <div class="hudrow" id="h-azt-row" hidden><span data-i18n="aztMile">AZT mile</span> <b id="h-azt">–</b></div>
+  <div class="hudrow" id="h-water-row" hidden><span data-i18n="nextWater">Next water north</span> <b id="h-water">–</b></div>
+  <div class="hudrow" id="h-rec-row" hidden><span data-i18n="recording">Recording</span> <b id="h-rec">–</b></div>
+  <div class="hudrow small" id="h-acc"></div>
+</div>
+
+<div id="fabs">
+  <button id="btn-locate" class="fab" aria-label="Show my location" title="My location">
+    <svg viewBox="0 0 24 24" width="24" height="24"><circle cx="12" cy="12" r="4" fill="currentColor"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="7.5" fill="none" stroke="currentColor" stroke-width="2"/></svg>
+  </button>
+  <button id="btn-rec" class="fab" aria-label="Record a track" title="Record">
+    <svg viewBox="0 0 24 24" width="24" height="24"><circle cx="12" cy="12" r="7" fill="currentColor"/></svg>
+  </button>
+</div>
+
+<svg id="north" viewBox="-50 -50 100 100" aria-label="North arrow"><g id="rose"><circle r="34" fill="rgba(255,255,255,.88)" stroke="#333" stroke-width="2"/><path d="M0 -28 L9 6 L0 0 L-9 6Z" fill="#333"/><text y="26" text-anchor="middle" font-size="17" font-weight="700" font-family="system-ui,sans-serif" fill="#333">N</text></g></svg>
+
+<aside id="legend" class="panel min">
+  <h2 id="legend-h"><span data-i18n="legend">Legend and sources</span> <span class="chev">▾</span></h2>
+  <div class="body">
+    <div class="row"><span class="ln azt"></span><span data-i18n="lgAzt">Arizona Trail (border to Vail)</span></div>
+    <div class="row"><span class="ln hike"></span><span data-i18n="lgHike">My hikes</span></div>
+    <div class="row"><span class="ln walk"></span><span data-i18n="lgWalk">My walks</span></div>
+    <div class="row"><span class="ln sel"></span><span data-i18n="lgSel">Selected hike</span></div>
+    <div class="row"><span class="ln rec"></span><span data-i18n="lgRec">Track being recorded</span></div>
+    <div class="row"><span class="dot water"></span><span data-i18n="lgWater">Spring or water point (may be dry)</span></div>
+    <div class="row"><span class="dot peak"></span><span data-i18n="lgPeak">Peak</span></div>
+    <div class="row"><span class="dot th"></span><span data-i18n="lgTh">Trailhead</span></div>
+    <div class="row"><span class="ln contour"></span><span data-i18n="lgContour">Contours (feet; bold every 200 ft)</span></div>
+    <div class="row"><span class="dot me"></span><span data-i18n="lgMe">You are here</span></div>
+    <div class="src" data-i18n-html="sources"></div>
+  </div>
+</aside>
+
+<section id="sheet" class="panel" hidden>
+  <div class="grab"></div>
+  <button id="sheet-close" class="x" aria-label="Close">×</button>
+  <div id="sheet-body"></div>
+</section>
+
+<nav id="tabs">
+  <button data-tab="map" aria-pressed="true"><svg viewBox="0 0 24 24"><path d="M3 6l6-2 6 2 6-2v14l-6 2-6-2-6 2z M9 4v14 M15 6v14" fill="none" stroke="currentColor" stroke-width="1.8"/></svg><span data-i18n="tMap">Map</span></button>
+  <button data-tab="hikes"><svg viewBox="0 0 24 24"><path d="M3 20l5-9 4 5 3-4 6 8z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg><span data-i18n="tHikes">Hikes</span></button>
+  <button data-tab="plan"><svg viewBox="0 0 24 24"><path d="M12 3c3 4 6 7.5 6 11a6 6 0 0 1-12 0c0-3.5 3-7 6-11z" fill="none" stroke="currentColor" stroke-width="1.8"/></svg><span data-i18n="tPlan">Plan</span></button>
+  <button data-tab="more"><svg viewBox="0 0 24 24"><circle cx="5" cy="12" r="2" fill="currentColor"/><circle cx="12" cy="12" r="2" fill="currentColor"/><circle cx="19" cy="12" r="2" fill="currentColor"/></svg><span data-i18n="tMore">More</span></button>
+</nav>
+
+<input id="file" type="file" accept=".gpx,.geojson,.json,application/gpx+xml,application/json,application/geo+json" multiple hidden>
+<div id="toast" role="status" hidden></div>
+
+<script src="../protomaps-southern-arizona/vendor/maplibre-gl.js"></script>
+<script src="../protomaps-southern-arizona/vendor/pmtiles.js"></script>
+<script src="../protomaps-southern-arizona/vendor/basemaps.js"></script>
+<script src="vendor/maplibre-contour.min.js"></script>
+<script src="i18n.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
