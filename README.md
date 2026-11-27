@@ -27,3 +27,7 @@ Home-range maps (`home-ranges/`) share one three.js app in `home-ranges/_lib/` (
 Coffee white space (`coffee-white-space/`) is a static deck.gl 9.1 page (deck.gl and h3-js vendored, MIT/Apache-2.0) with a bundled basemap (no tiles, no keys). The analysis ran in Wherobots Cloud; the SQL, notebook and method are in `coffee-white-space/method/`.
 
 Brand white-space studies (`white-space/`) reuse the coffee pipeline as recipes: one shared deck.gl app in `white-space/_lib/`, one `data.js` per brand. They are independent public-data studies and are not affiliated with the brands. See `white-space/README.md`.
+
+## License
+
+All rights reserved, Pensador Solutions LLC. The code and maps here are published to view, not to reuse. Third-party libraries and data keep their own licenses and credits. See `LICENSE`.
