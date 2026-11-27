@@ -193,7 +193,7 @@ let map, AZT = null;
     if (on) { map.setTerrain({ source: 'terrain', exaggeration: 1.5 }); if (map.getPitch() < 30) map.easeTo({ pitch: 60, duration: 800 }); }
     else { map.setTerrain(null); map.easeTo({ pitch: 0, bearing: 0, duration: 600 }); }
   };
-  $('#btn-3d').onclick = () => set3D(!is3D);
+  $('#btn-3d').onclick = () => { try { set3D(!is3D); } catch (e) { toast('3D: ' + e.message, 6000); } };
   map.on('pitchend', () => { if (map.getPitch() > 15 && !is3D) set3D(true); });
   map.on('rotate', () => $('#rose').setAttribute('transform', `rotate(${-map.getBearing()})`));
   $('#north').onclick = () => map.easeTo({ bearing: 0, duration: 500 });
@@ -566,4 +566,4 @@ if (innerWidth >= 760) $('#legend').classList.remove('min');
 applyLang();
 
 /* ---------- service worker (app shell offline) ---------- */
-if ('serviceWorker' in navigator && location.protocol !== 'file:') navigator.serviceWorker.register('sw.js').catch(() => {});
+if ('serviceWorker' in navigator && location.protocol !== 'file:') navigator.serviceWorker.register('sw.js', { updateViaCache: 'none' }).catch(() => {});
