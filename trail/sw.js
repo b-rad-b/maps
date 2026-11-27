@@ -1,6 +1,6 @@
 /* Senda service worker: keeps the app shell, fonts, sprites and small data available with no signal.
    The two large .pmtiles files are saved separately (Cache Storage "senda-data-v1") by the app's "Save for offline" button. */
-const SHELL = 'senda-shell-v1';
+const SHELL = 'senda-shell-v2';
 const PRECACHE = ['./', 'index.html', 'app.css', 'app.js', 'i18n.js', 'manifest.webmanifest', 'icon-180.png', 'icon-192.png',
   'vendor/maplibre-contour.min.js', 'data/azt-measured.json', 'data/water.geojson',
   '../protomaps-southern-arizona/vendor/maplibre-gl.js', '../protomaps-southern-arizona/vendor/maplibre-gl.css',

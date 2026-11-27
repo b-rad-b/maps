@@ -154,6 +154,7 @@ function buildStyle(baseKey, demSource) {
       protomaps: { type: 'vector', url: 'pmtiles://' + baseKey, attribution: '<a href="https://protomaps.com">Protomaps</a> © <a href="https://openstreetmap.org/copyright">OpenStreetMap</a>' },
       osm: { type: 'raster', tiles: ['https://tile.openstreetmap.org/{z}/{x}/{y}.png'], tileSize: 256, maxzoom: 19, attribution: '© OpenStreetMap (outside southern Arizona)' },
       dem: { type: 'raster-dem', encoding: 'terrarium', tiles: [demSource.sharedDemProtocolUrl], maxzoom: 12, tileSize: 256, attribution: 'Terrain: USGS 3DEP, SRTM (Tilezen)' },
+      terrain: { type: 'raster-dem', encoding: 'terrarium', tiles: [demSource.sharedDemProtocolUrl], maxzoom: 12, tileSize: 256 },
       contours: { type: 'vector', tiles: [demSource.contourProtocolUrl({ multiplier: FT, thresholds: { 11: [200, 1000], 12: [100, 500], 13: [40, 200], 15: [20, 200] }, elevationKey: 'ele', levelKey: 'level', contourLayer: 'contours' })], maxzoom: 16 },
       azt: { type: 'geojson', data: EMPTY },
       water: { type: 'geojson', data: here + 'data/water.geojson' },
@@ -176,7 +177,7 @@ let map, AZT = null;
   demSource.setupMaplibre(maplibregl);
   const baseKey = base.source.getKey();
   map = new maplibregl.Map({
-    container: 'map', style: buildStyle(baseKey, demSource), attributionControl: false, hash: true, maxPitch: 0, dragRotate: true,
+    container: 'map', style: buildStyle(baseKey, demSource), attributionControl: false, hash: true, maxPitch: 75, dragRotate: true, pitchWithRotate: true,
     bounds: [[-111.05, 31.3], [-110.3, 32.3]], fitBoundsOptions: { padding: 30 }, maxZoom: 17,
   });
   window.__map = map;
@@ -185,7 +186,17 @@ let map, AZT = null;
   map.addControl(new maplibregl.AttributionControl({ compact: true, customAttribution: 'Senda · Pensador Solutions · Arizona Trail Association' }), 'bottom-right');
   map.on('dragstart', () => { if (follow) { follow = false; $('#btn-locate').classList.remove('on'); } });
   map.on('zoom', drawMe);
+  // 3D terrain: button toggles real relief (1.5x) and tilts; two-finger drag up/down tilts by hand
+  let is3D = false;
+  const set3D = (on) => {
+    is3D = on; $('#btn-3d').classList.toggle('on', on); $('#btn-3d').setAttribute('aria-pressed', String(on));
+    if (on) { map.setTerrain({ source: 'terrain', exaggeration: 1.5 }); if (map.getPitch() < 30) map.easeTo({ pitch: 60, duration: 800 }); }
+    else { map.setTerrain(null); map.easeTo({ pitch: 0, bearing: 0, duration: 600 }); }
+  };
+  $('#btn-3d').onclick = () => set3D(!is3D);
+  map.on('pitchend', () => { if (map.getPitch() > 15 && !is3D) set3D(true); });
   map.on('rotate', () => $('#rose').setAttribute('transform', `rotate(${-map.getBearing()})`));
+  $('#north').onclick = () => map.easeTo({ bearing: 0, duration: 500 });
   map.on('load', async () => {
     map.addImage('senda-cone', coneImage(), { pixelRatio: 2 });
     const azt = await (await fetch('data/azt-measured.json')).json();
@@ -410,6 +421,7 @@ async function download(name, text, type) {
 function showHike(h) {
   if (!h) return; selected = h;
   map.getSource('sel').setData({ type: 'Feature', geometry: { type: 'LineString', coordinates: h.coords.map((c) => [c[0], c[1]]) }, properties: {} });
+  map.setPaintProperty('hikes', 'line-opacity', 0.35);
   fitHike(h);
   $('#sheet-body').innerHTML = `<h3>${esc(h.name)}</h3><p class="muted small">${h.start ? fmtDate(h.start) : ''} · ${T(h.kind === 'walk' ? 'kindWalk' : 'kindHike')}</p>
   <div class="stats"><div class="stat"><b>${fmtMi(h.distance_m)}</b><span>${T('distance')} (${T('mi')})</span></div><div class="stat"><b>${fmtFt(h.gain_m)}</b><span>${T('climb')} (${T('ft')})</span></div><div class="stat"><b>${fmtDur(h.moving_s ?? h.elapsed_s)}</b><span>${T(h.moving_s != null ? 'moving' : 'elapsed')}</span></div></div>
@@ -546,7 +558,7 @@ async function openTab(tab, keep) {
   if (tab === 'rec') { body.innerHTML = recSheet(); bindRec(); }
   $('#sheet').hidden = false; document.body.classList.add('sheet-open'); if (!keep) $('#sheet').scrollTop = 0;
 }
-function closeSheet() { $('#sheet').hidden = true; document.body.classList.remove('sheet-open'); currentTab = 'map'; document.querySelectorAll('#tabs button').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.tab === 'map'))); }
+function closeSheet() { if (map && selected) { map.getSource('sel').setData(EMPTY); map.setPaintProperty('hikes', 'line-opacity', 0.85); selected = null; } $('#sheet').hidden = true; document.body.classList.remove('sheet-open'); currentTab = 'map'; document.querySelectorAll('#tabs button').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.tab === 'map'))); }
 document.querySelectorAll('#tabs button').forEach((b) => (b.onclick = () => (b.dataset.tab === currentTab && b.dataset.tab !== 'map' ? closeSheet() : openTab(b.dataset.tab))));
 $('#sheet-close').onclick = closeSheet;
 $('#legend-h').onclick = () => $('#legend').classList.toggle('min');

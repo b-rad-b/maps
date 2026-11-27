@@ -1,0 +1,13 @@
+Copyright (c) 2026 Pensador Solutions LLC. All rights reserved.
+
+The original code, maps, styles, text and images in this repository are published
+so they can be viewed as a portfolio. No license is granted to copy, modify,
+redistribute or use them, in whole or in part, without written permission from
+Pensador Solutions LLC.
+
+Third-party software and data included here keep their own licenses and credits,
+which take precedence for those files. These include MapLibre GL JS, PMTiles,
+Protomaps basemaps, maplibre-contour, three.js, deck.gl, h3-js and the bundled
+fonts (see the license and NOTICE files in each vendor/ and fonts/ folder), plus
+map data © OpenStreetMap contributors (ODbL), USGS 3DEP and SRTM terrain, Natural
+Earth, Overture Maps and the Arizona Trail Association, as credited on each map.
